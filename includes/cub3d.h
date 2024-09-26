@@ -18,6 +18,8 @@
 # define FALSE 0
 # define TRUE 1
 # define MSG_INV_ARG "Invalid arguments\n"
+# define MSG_INV_EXEC "Invalid .cub map file\n"
+# define MSG_INV_TEXTURES "Invalid texture configurations\n"
 
 typedef struct s_rgb_colors
 {
@@ -39,7 +41,8 @@ typedef struct s_cub3d
 	t_rgb_colors	*rgb_colors;
 }	t_cub3d;
 
-void	init_cub(int argc, char **argv, t_cub3d	*cub3d);
+void	validate_config(int argc, char **argv);
 void	error_handler(int status, char *message, t_cub3d *cub3d);
+int		check_valid_file(char *path);
 
 #endif

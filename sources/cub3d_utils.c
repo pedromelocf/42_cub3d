@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub3d_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmelo-ca <pmelo-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 22:54:02 by pmelo-ca          #+#    #+#             */
-/*   Updated: 2024/09/25 12:49:29 by pmelo-ca         ###   ########.fr       */
+/*   Created: 2024/09/26 15:09:00 by pmelo-ca          #+#    #+#             */
+/*   Updated: 2024/09/26 15:09:00 by pmelo-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	main(int argc, char **argv)
+int		check_valid_file(char *path)
 {
-//	t_cub3d	*cub3d;
-//
-//	cub3d = NULL;
-	validate_config(argc, argv);
-    return (0);
+	if (!access(path, X_OK))
+          return(TRUE);
+    return (FALSE);
 }
