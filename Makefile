@@ -1,5 +1,5 @@
 # Variables
-NAME					:= cub3d
+NAME					:= cub3D
 
 SOURCES_DIR				:= sources/
 OBJECTS_DIR				:= objects/
@@ -11,13 +11,12 @@ LIBFT_FILE 				:= libft.a
 MAKE					:= make
 MAKE_LIBS				:= $(MAKE) -sC
 CC						:= cc
-CFLAGS					:= -Wall -Wextra -Werror -Wunreachable-code -Ofast
+CFLAGS					:= -Wall -Wextra -Werror -Wunreachable-code -Ofast -g3
 MKDIR					:= mkdir -p
 RM						:= rm -rf
 
 # Sources
-FILES					:= main validate_config validate_rgb validate_textures \
-						   error_handler cub3d_utils
+FILES					:= main
 
 SOURCES					:= $(addprefix $(SOURCES_DIR), $(addsuffix .c, $(FILES)))
 OBJECTS					:= $(addprefix $(OBJECTS_DIR), $(addsuffix .o, $(FILES)))

@@ -15,12 +15,16 @@
 
 # include "../libraries/lib/libft.h"
 
-# define FALSE 0
-# define TRUE 1
-# define MSG_INV_ARG "Invalid arguments\n"
+# define MSG_ERROR "\033[1;41mError!\033[0m\n\033[0;31m"
+# define MSG_LEN_ERROR 25
+
+# define MSG_ARG_COUNT "Arguments: Invalid number of arguments.\n\tUsage: ./cub3d <map.cub>"
 # define MSG_INV_EXEC "Invalid .cub map file\n"
 # define MSG_INV_TEXTURES "Invalid texture configurations\n"
 # define MSG_INV_COLORS "Invalid RGB colors configurations\n"
+
+# define MSG_ERROR_EXIT "\033[0m\n"
+# define MSG_LEN_ERROR_EXIT 5
 
 typedef struct s_rgb_colors
 {
@@ -51,6 +55,6 @@ int				check_color_line(int i, char *id, char *rgbs);
 int				check_rgbs(char *rgbs);
 int				ft_atoi_cub(const char *nptr);
 void			remove_line_break(char **old_string);
-void			error_handler(int status, char *message, t_cub3d *cub3d);
+void			handle_error(const char *message);
 
 #endif
