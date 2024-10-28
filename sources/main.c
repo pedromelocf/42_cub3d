@@ -12,8 +12,20 @@
 
 #include "../includes/cub3d.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	ft_printf("HELLO WORLD\n");
-	return (0);
+//	t_scene	scene;
+	(void)argv;
+	if (argc != 2)
+		handle_error(MSG_ARG_COUNT);
+//	load_scene(&scene, ++argv);
+	return (EXIT_SUCCESS);
+}
+
+void	handle_error(const char *message)
+{
+	write(STDERR_FILENO, MSG_ERROR, MSG_LEN_ERROR);
+	write(STDERR_FILENO, message, ft_strlen(message));
+	write(STDERR_FILENO, MSG_ERROR_EXIT, MSG_LEN_ERROR_EXIT);
+	exit(EXIT_FAILURE);
 }
