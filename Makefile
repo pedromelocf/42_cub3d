@@ -5,7 +5,7 @@ SOURCES_DIR				:= sources/
 OBJECTS_DIR				:= objects/
 HEADERS_DIR				:= includes/
 LIBRARIES_DIR			:= libraries/
-LIBFT_DIR				:= $(addprefix $(LIBRARIES_DIR), lib/)
+LIBFT_DIR				:= $(addprefix $(LIBRARIES_DIR), libft/)
 LIBFT_FILE 				:= libft.a
 
 MAKE					:= make
@@ -24,9 +24,9 @@ LIBFT					:= $(addprefix $(LIBFT_DIR), $(LIBFT_FILE))
 LIBFT_HEADER			:= $(addprefix $(LIBFT_DIR), includes/libft.h)
 HEADERS					:= -I $(HEADERS_DIR)
 
-MESSAGE1 := "------------------Compiling cub3d Objects!-------------------"
+MESSAGE1 := "------------------Compiling cub3D Objects!-------------------"
 MESSAGE2 := "---------------Objects Compiled Successfully!----------------"
-MESSAGE3 := "-----------------.cub3d Compiled Successfully----------------"
+MESSAGE3 := "-----------------'./cub3D' File Created Successfully!----------------"
 
 # Rules
 .PHONY: all clean fclean re bonus

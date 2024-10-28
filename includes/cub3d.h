@@ -13,7 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../libraries/lib/libft.h"
+# include "../libraries/libft/includes/libft.h"
 
 # define MSG_ERROR "\033[1;41mError!\033[0m\n\033[0;31m"
 # define MSG_LEN_ERROR 25
