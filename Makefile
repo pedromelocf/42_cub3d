@@ -25,7 +25,8 @@ MLX_BUILD				:= $(addprefix $(MLX_DIR), $(BUILD_DIR))
 MLX						:= $(addprefix $(MLX_BUILD), $(MLX_FILE))
 
 # Sources
-FILES					:= main
+FILES					:= main \
+						   mlx_handler
 
 OBJECTS					:= $(addprefix $(OBJECTS_DIR), $(addsuffix .o, $(FILES)))
 LIBFT_FILE				:= libft.a
@@ -36,7 +37,7 @@ MESSAGE1 := "-----------------.cub3d Compiled Successfully----------------"
 all: libraries $(NAME)
 
 $(NAME): $(OBJECTS)
-	@ $(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MLX) $(MLX_FLAGS) -o $(NAME)
+	@ $(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MLX) $(LIB_MLX_FLAGS) -o $(NAME)
 	@ echo $(MESSAGE1)
 
 $(OBJECTS_DIR)%.o: $(SOURCES_DIR)%.c
