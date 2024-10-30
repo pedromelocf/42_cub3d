@@ -54,19 +54,21 @@ typedef struct s_texture_paths
 	char	ea_texture_path[50];
 }	t_texture_paths;
 
-typedef struct s_player_start
+typedef struct s_player_pos
 {
-	int x;
-	int y;
-	char orientation;
-}	t_player_start;
+	float x;
+	float y;
+	float angle_orientation;
+}	t_player_pos;
 
 typedef struct s_cub3d
 {
 	t_texture_paths	texture_paths;
 	t_rgb_colors	rgb_colors;
 	char			map[8][6];
-	t_player_start	player_start;
+	t_player_pos	player_pos;
+	mlx_t 			*mlx;
+	mlx_image_t 	*image;
 }	t_cub3d;
 
 
@@ -74,4 +76,5 @@ int	handle_mlx(mlx_t **mlx, mlx_image_t **image);
 void	key_hook(mlx_key_data_t keydata, void *mlx);
 void	draw_box(mlx_image_t *image, int height, int width, int beginx, int beginy, int color);
 void	draw_player_minimap (mlx_image_t *image, t_cub3d *s_cub3d);
+void	handle_key_hooks(t_cub3d *s_cub3d);
 #endif
