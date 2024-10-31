@@ -36,27 +36,6 @@ int	handle_mlx(mlx_t **mlx, mlx_image_t **image)
 	return (0);
 }
 
-void	draw_box(mlx_image_t *image, int height, int width, int beginx, int beginy, int color)
-{
-	int temp = beginx;
-	int x = 0;
-	int y = 0;
-
-	while (y < height)
-	{
-		while (x < width)
-		{
-			mlx_put_pixel(image, beginx, beginy, color);
-			beginx++;
-			x++;
-		}
-		beginx = temp;
-		x = 0;
-		y++;
-		beginy++;
-	}
-}
-
 void	handle_key_hooks(t_cub3d *s_cub3d)
 {
 	if (mlx_is_key_down(s_cub3d->mlx, MLX_KEY_ESCAPE))
@@ -79,6 +58,20 @@ void	handle_key_hooks(t_cub3d *s_cub3d)
 	if (mlx_is_key_down(s_cub3d->mlx, MLX_KEY_D) && s_cub3d->player_pos.x < 5.8 ) {
 		s_cub3d->player_pos.x += 0.1;
 		printf("POSX: %f\n", s_cub3d->player_pos.x);
+	}
+	if (mlx_is_key_down(s_cub3d->mlx, MLX_KEY_LEFT)) {
+		if (s_cub3d->player_pos.angle_orientation >= 0 && s_cub3d->player_pos.angle_orientation <= 360)
+			s_cub3d->player_pos.angle_orientation -= 1;
+		if (s_cub3d->player_pos.angle_orientation < 0)
+			s_cub3d->player_pos.angle_orientation = 360;
+		printf("ANG: %f\n", s_cub3d->player_pos.angle_orientation);
+	}
+	if (mlx_is_key_down(s_cub3d->mlx, MLX_KEY_RIGHT)) {
+		if (s_cub3d->player_pos.angle_orientation >= 0 && s_cub3d->player_pos.angle_orientation < 360)
+			s_cub3d->player_pos.angle_orientation += 1;
+		if (s_cub3d->player_pos.angle_orientation >= 360)
+			s_cub3d->player_pos.angle_orientation = 0;
+		printf("ANG: %f\n", s_cub3d->player_pos.angle_orientation);
 	}
 	draw_box(s_cub3d->image, HEIGHT, WIDTH, 0, 0, BLACK_COLOR);
 	draw_player_minimap(s_cub3d->image, s_cub3d);

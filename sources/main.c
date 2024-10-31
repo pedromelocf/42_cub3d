@@ -18,8 +18,8 @@ int	main()
 		{"./path_to_the_north_texture", "./path_to_the_south_texture",
 		 " ./path_to_the_west_texture", "./path_to_the_east_texture"},
 		{"220,100,0", "225,30,0"},
-		{"11111\0", "10001\0", "10N01\0", "10001\0", "10001\0", "10001\0", "10001\0","11111\0"},
-		{3, 2, 0},
+		{"11111\0", "10001\0", "10001\0", "10N01\0", "10001\0", "10001\0", "10001\0","11111\0"},
+		{3, 2, 270},
 		NULL,
 		NULL
 	};
@@ -45,24 +45,17 @@ void draw_player_minimap (mlx_image_t *image, t_cub3d *s_cub3d)
 		x = 0;
 		while (x < 6) // change 6 to map width
 		{
-			if (s_cub3d->map[y][x] != '0' && s_cub3d->map[y][x] != '1' && s_cub3d->map[y][x] != ' ')
+			if (s_cub3d->map[y][x] == '1')
+				draw_box(image, 100, 100, x * 50 + 230, y * 50 + 10, RED_COLOR);
+			else if (s_cub3d->map[y][x] != '0' && s_cub3d->map[y][x] != '1' && s_cub3d->map[y][x] != ' ')
 			{
 				draw_box(image, 10, 10, WIDTH * s_cub3d->player_pos.x / 6 - 5,
-						 HEIGHT * s_cub3d->player_pos.y / 8 - 5, RED_COLOR);// change 6 to map width and 8 to map height
-				if (s_cub3d->map[y][x] == 'N'){
-					draw_box(image, 100, 2, WIDTH * s_cub3d->player_pos.x / 6 - 1,
-						 HEIGHT * s_cub3d->player_pos.y / 8 - 5, RED_COLOR);
-				}
-//				if (s_cub3d->map[y][x] == 'S')
-//				{
-//
-//				}
-//				if (s_cub3d->map[y][x] == 'E'){
-//
-//				}
-//				if (s_cub3d->map[y][x] == 'W'){
-//
-//				}
+						 HEIGHT * s_cub3d->player_pos.y / 8 - 5, WHITE_COLOR);// change 6 to map width and 8 to map height
+				draw_line(image,  WIDTH * s_cub3d->player_pos.x / 6,
+							  HEIGHT * s_cub3d->player_pos.y / 8 ,
+							  WIDTH * s_cub3d->player_pos.x / 6 - 1 + 100,
+							  HEIGHT * s_cub3d->player_pos.y / 8 - 5 + 2,
+							  s_cub3d->player_pos.angle_orientation );
 			}
 			x++;
 		}

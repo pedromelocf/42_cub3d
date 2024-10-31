@@ -17,7 +17,7 @@
 # include "../libraries/mlx/include/MLX42/MLX42.h"
 # include <sys/stat.h>
 # include <fcntl.h>
-
+# include <math.h>
 
 # define MSG_ERROR "\033[1;41mError!\033[0m\n\033[0;31m"
 # define MSG_LEN_ERROR 25
@@ -38,7 +38,9 @@
 # define HEIGHT 480
 
 # define BLACK_COLOR 0x00000FF
-# define RED_COLOR 0xFFFFFFFF
+# define RED_COLOR 0x00FF0000
+# define WHITE_COLOR  0xFFFFFFFF
+# define YELLOW_COLLOR
 
 typedef struct s_rgb_colors
 {
@@ -73,8 +75,8 @@ typedef struct s_cub3d
 
 
 int	handle_mlx(mlx_t **mlx, mlx_image_t **image);
-void	key_hook(mlx_key_data_t keydata, void *mlx);
 void	draw_box(mlx_image_t *image, int height, int width, int beginx, int beginy, int color);
 void	draw_player_minimap (mlx_image_t *image, t_cub3d *s_cub3d);
 void	handle_key_hooks(t_cub3d *s_cub3d);
+void	draw_line(mlx_image_t *image, int beginx, int beginy, int endx, int endy, float angle);
 #endif
