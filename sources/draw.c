@@ -1,9 +1,8 @@
 #include "../includes/cub3d.h"
 
-
 static void line(mlx_image_t *image, int x1, int y1, int x2, int y2) ;
 
-void	draw_box(mlx_image_t *image, int height, int width, int beginx, int beginy, int color)
+void	draw_box(mlx_image_t *image, int height, int width, int beginx, int beginy, uint32_t color)
 {
 	int temp = beginx;
 	int x = 0;
@@ -38,7 +37,7 @@ void	draw_line(mlx_image_t *image ,int beginx, int beginy, int endx, int endy, f
 	line(image ,beginx,beginy, x3, y3);
 }
 
-void line(mlx_image_t *image, int x1, int y1, int x2, int y2)
+void	line(mlx_image_t *image, int x1, int y1, int x2, int y2)
 {
     int dx = x2 - x1;
     int dy = y2 - y1;
@@ -51,7 +50,7 @@ void line(mlx_image_t *image, int x1, int y1, int x2, int y2)
     float y = y1;
 
     for (int i = 0; i <= steps; i++) {
-		mlx_put_pixel(image, x, y, WHITE_COLOR);
+		mlx_put_pixel(image, x, y, RED_COLOR);
         x += xIncrement;
         y += yIncrement;
 			if (i == steps) {
@@ -59,3 +58,4 @@ void line(mlx_image_t *image, int x1, int y1, int x2, int y2)
         }
     }
 }
+

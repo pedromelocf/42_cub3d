@@ -34,13 +34,14 @@
 # define FALSE 0
 # define TRUE 1
 
-# define WIDTH 720
-# define HEIGHT 480
+# define WIDTH 1080
+# define HEIGHT 720
 
-# define BLACK_COLOR 0x00000FF
-# define RED_COLOR 0x00FF0000
-# define WHITE_COLOR  0xFFFFFFFF
-# define YELLOW_COLLOR
+# define BLACK_COLOR 0x00000ff
+# define RED_COLOR  0xff0000ff
+# define WHITE_COLOR  0xffffffff
+# define GREY_COLOR	0x00FF0000
+# define YELLOW_COLLOR 0x2b2b2bff
 
 typedef struct s_rgb_colors
 {
@@ -75,8 +76,9 @@ typedef struct s_cub3d
 
 
 int	handle_mlx(mlx_t **mlx, mlx_image_t **image);
-void	draw_box(mlx_image_t *image, int height, int width, int beginx, int beginy, int color);
+void	draw_box(mlx_image_t *image, int height, int width, int beginx, int beginy, uint32_t color);
 void	draw_player_minimap (mlx_image_t *image, t_cub3d *s_cub3d);
 void	handle_key_hooks(t_cub3d *s_cub3d);
 void	draw_line(mlx_image_t *image, int beginx, int beginy, int endx, int endy, float angle);
+
 #endif

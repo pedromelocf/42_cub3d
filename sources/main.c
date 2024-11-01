@@ -46,16 +46,19 @@ void draw_player_minimap (mlx_image_t *image, t_cub3d *s_cub3d)
 		while (x < 6) // change 6 to map width
 		{
 			if (s_cub3d->map[y][x] == '1')
-				draw_box(image, 100, 100, x * 50 + 230, y * 50 + 10, RED_COLOR);
-			else if (s_cub3d->map[y][x] != '0' && s_cub3d->map[y][x] != '1' && s_cub3d->map[y][x] != ' ')
+				draw_box(s_cub3d->image, 30, 30, x * 32 + 50, y * 32 + 420, GREY_COLOR);
+			else
 			{
-				draw_box(image, 10, 10, WIDTH * s_cub3d->player_pos.x / 6 - 5,
-						 HEIGHT * s_cub3d->player_pos.y / 8 - 5, WHITE_COLOR);// change 6 to map width and 8 to map height
-				draw_line(image,  WIDTH * s_cub3d->player_pos.x / 6,
-							  HEIGHT * s_cub3d->player_pos.y / 8 ,
+				draw_box(image, 5, 5, WIDTH * s_cub3d->player_pos.x / 6 - 2,HEIGHT * s_cub3d->player_pos.y / 8 - 2 ,RED_COLOR);// change 6 to map width and 8 to map height
+				if (s_cub3d->map[y][x] != '\0' && s_cub3d->map[y][x] != ' ')
+				{
+					draw_box(s_cub3d->image, 31, 31, x * 29 + 56, y * 31 + 423, WHITE_COLOR);
+					draw_line(image, WIDTH * s_cub3d->player_pos.x / 6,
+							  HEIGHT * s_cub3d->player_pos.y / 8,
 							  WIDTH * s_cub3d->player_pos.x / 6 - 1 + 100,
 							  HEIGHT * s_cub3d->player_pos.y / 8 - 5 + 2,
-							  s_cub3d->player_pos.angle_orientation );
+							  s_cub3d->player_pos.angle_orientation);
+				}
 			}
 			x++;
 		}

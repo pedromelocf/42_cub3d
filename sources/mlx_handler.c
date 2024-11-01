@@ -44,19 +44,19 @@ void	handle_key_hooks(t_cub3d *s_cub3d)
 		exit(EXIT_SUCCESS);
 	}
 	if (mlx_is_key_down(s_cub3d->mlx, MLX_KEY_W) && s_cub3d->player_pos.y > 0.1 ) {
-		s_cub3d->player_pos.y -= 0.1;
+		s_cub3d->player_pos.y -= 0.05;
 		printf("POSY: %f\n", s_cub3d->player_pos.y);
 	}
 	if (mlx_is_key_down(s_cub3d->mlx, MLX_KEY_S) && s_cub3d->player_pos.y < 7.8 ) {
-		s_cub3d->player_pos.y += 0.1;
+		s_cub3d->player_pos.y += 0.05;
 		printf("POSY: %f\n", s_cub3d->player_pos.y);
 	}
 	if (mlx_is_key_down(s_cub3d->mlx, MLX_KEY_A) && s_cub3d->player_pos.x > 0.2 ) {
-		s_cub3d->player_pos.x -= 0.1;
+		s_cub3d->player_pos.x -= 0.05;
 		printf("POSX: %f\n", s_cub3d->player_pos.x);
 	}
 	if (mlx_is_key_down(s_cub3d->mlx, MLX_KEY_D) && s_cub3d->player_pos.x < 5.8 ) {
-		s_cub3d->player_pos.x += 0.1;
+		s_cub3d->player_pos.x += 0.05;
 		printf("POSX: %f\n", s_cub3d->player_pos.x);
 	}
 	if (mlx_is_key_down(s_cub3d->mlx, MLX_KEY_LEFT)) {
