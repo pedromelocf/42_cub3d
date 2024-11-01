@@ -57,10 +57,10 @@ void draw_player_minimap (mlx_image_t *image, t_cub3d *s_cub3d)
 				if (s_cub3d->map[y][x] != '\0' && s_cub3d->map[y][x] != ' ')
 				{
 					draw_box(s_cub3d->image, 31, 31, x * 29 + 56, y * 31 + 423, WHITE_COLOR);
-					draw_line(image, WIDTH * s_cub3d->player_pos.x / 6,
-							  HEIGHT * s_cub3d->player_pos.y / 8,
-							  WIDTH * s_cub3d->player_pos.x / 6 - 1 + 100,
-							  HEIGHT * s_cub3d->player_pos.y / 8 - 5 + 2,
+					draw_line(image, (s_cub3d->player_pos.x + 86) + s_cub3d->player_pos.x * 13 + 3,
+							  (s_cub3d->player_pos.y + 454) + s_cub3d->player_pos.y * 22,
+							  (s_cub3d->player_pos.x + 86) + s_cub3d->player_pos.x * 13 + 100,
+							  (s_cub3d->player_pos.y + 454) + s_cub3d->player_pos.y * 22,
 							  s_cub3d->player_pos.angle_orientation);
 				}
 			}
