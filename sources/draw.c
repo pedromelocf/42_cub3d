@@ -59,3 +59,8 @@ void	line(mlx_image_t *image, int x1, int y1, int x2, int y2)
     }
 }
 
+void	draw_background(t_cub3d *s_cub3d)
+{
+	draw_box(s_cub3d->image, HEIGHT / 2, WIDTH, 0, 0, RED_COLOR);
+	draw_box(s_cub3d->image, HEIGHT / 2, WIDTH, 0,HEIGHT / 2, 0xDC6400FF);
+}

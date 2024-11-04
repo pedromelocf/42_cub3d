@@ -27,7 +27,6 @@ int	main()
 	if (handle_mlx(&s_cub3d.mlx, &s_cub3d.image))
 		return (EXIT_FAILURE);
 
-	draw_box(s_cub3d.image, HEIGHT, WIDTH, 0, 0, BLACK_COLOR);
 	draw_player_minimap(s_cub3d.image, &s_cub3d);
 	mlx_loop_hook(s_cub3d.mlx, (void *)handle_key_hooks, &s_cub3d);
 	mlx_loop(s_cub3d.mlx);
@@ -40,6 +39,7 @@ void draw_player_minimap (mlx_image_t *image, t_cub3d *s_cub3d)
 	int x = 0;
 	int y = 0;
 
+	draw_background(s_cub3d);
 	while (y < 8) // change 8 to map height
 	{
 		x = 0;
