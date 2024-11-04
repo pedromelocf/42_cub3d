@@ -50,7 +50,7 @@ void	line(mlx_image_t *image, int x1, int y1, int x2, int y2)
     float y = y1;
 
     for (int i = 0; i <= steps; i++) {
-		mlx_put_pixel(image, x, y, RED_COLOR);
+		mlx_put_pixel(image, x, y, YELLOW_COLLOR);
         x += xIncrement;
         y += yIncrement;
 			if (i == steps) {

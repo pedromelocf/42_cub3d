@@ -41,7 +41,9 @@
 # define RED_COLOR  0xff0000ff
 # define WHITE_COLOR  0xffffffff
 # define GREY_COLOR	0x00FF0000
-# define YELLOW_COLLOR 0x2b2b2bff
+# define YELLOW_COLLOR 0xFFFF00FF
+
+# define FOV 66
 
 typedef struct s_rgb_colors
 {
