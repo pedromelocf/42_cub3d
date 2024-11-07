@@ -6,7 +6,7 @@
 /*   By: pmelo-ca <pmelo-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 22:54:02 by pmelo-ca          #+#    #+#             */
-/*   Updated: 2024/10/29 20:16:17 by pmelo-ca         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:19:25 by pmelo-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,13 @@ void draw_player_minimap (mlx_image_t *image, t_cub3d *s_cub3d)
 
 				if (s_cub3d->map[y][x] != '\0' && s_cub3d->map[y][x] != ' ')
 				{
+					perform_dda(s_cub3d);
 					draw_box(s_cub3d->image, 31, 31, x * 29 + 56, y * 31 + 423, WHITE_COLOR);
-					for(int i = -300; i < 300; i++  )
+					for(int i = - WIDTH / 2; i < WIDTH / 2; i++ )
 					{
 						draw_line(image, (s_cub3d->player_pos.x + 86) + s_cub3d->player_pos.x * 13 + 3,
 								  (s_cub3d->player_pos.y + 454) + s_cub3d->player_pos.y * 22,
-								  (s_cub3d->player_pos.x + 86) + s_cub3d->player_pos.x * 13 + 100,
+								  (s_cub3d->player_pos.x + 86) + s_cub3d->player_pos.x * 13 + 35,
 								  (s_cub3d->player_pos.y + 454) + s_cub3d->player_pos.y * 22,
 								  s_cub3d->player_pos.angle_orientation + i * 0.1);
 					}

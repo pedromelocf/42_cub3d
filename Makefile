@@ -26,6 +26,7 @@ MLX						:= $(addprefix $(MLX_BUILD), $(MLX_FILE))
 
 # Sources
 FILES					:= main \
+						   dda \
 						   draw \
 						   mlx_handler
 

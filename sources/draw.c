@@ -30,9 +30,8 @@ void	draw_line(mlx_image_t *image ,int beginx, int beginy, int endx, int endy, f
 	int y3;
 
 	theta = (double)(angle) * M_PI/180;
-	x3 = (int)(beginx+cos(theta)*(endx-beginx) - sin(theta)*(endy - beginy));
-	y3 = (int)(beginy+sin(theta)*(endx-beginx) + cos(theta)*(endy - beginy));
-	(void)image;
+	x3 = (int)(beginx + cos(theta) * (endx - beginx) - sin(theta) * (endy - beginy));
+	y3 = (int)(beginy + sin(theta) * (endx - beginx) + cos(theta) * (endy - beginy));
 
 	line(image ,beginx,beginy, x3, y3);
 }

@@ -83,5 +83,6 @@ void	draw_player_minimap (mlx_image_t *image, t_cub3d *s_cub3d);
 void	handle_key_hooks(t_cub3d *s_cub3d);
 void	draw_line(mlx_image_t *image, int beginx, int beginy, int endx, int endy, float angle);
 void	draw_background(t_cub3d *s_cub3d);
+void	perform_dda(t_cub3d *s_cub3d);
 
 #endif
