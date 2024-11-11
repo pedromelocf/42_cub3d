@@ -18,8 +18,18 @@ int	main()
 		{"./path_to_the_north_texture", "./path_to_the_south_texture",
 		 " ./path_to_the_west_texture", "./path_to_the_east_texture"},
 		{"220,100,0", "225,30,0"},
-		{"11111\0", "10001\0", "10001\0", "10N01\0", "10001\0", "10001\0", "10001\0","11111\0"},
-		{3, 2, 270},
+		{"111111",
+		       "100001",
+			   "100001",
+			   "10N001",
+			   "100001",
+			   "100001",
+			   "100001",
+			   "111111"},
+
+		{4, 3},
+		{1, 0},
+		{0, 0.66},
 		NULL,
 		NULL
 	};
@@ -27,49 +37,9 @@ int	main()
 	if (handle_mlx(&s_cub3d.mlx, &s_cub3d.image))
 		return (EXIT_FAILURE);
 
-	draw_player_minimap(s_cub3d.image, &s_cub3d);
+	cast_rays(&s_cub3d);
 	mlx_loop_hook(s_cub3d.mlx, (void *)handle_key_hooks, &s_cub3d);
 	mlx_loop(s_cub3d.mlx);
 	mlx_terminate(s_cub3d.mlx);
 	return (EXIT_SUCCESS);
-}
-
-void draw_player_minimap (mlx_image_t *image, t_cub3d *s_cub3d)
-{
-	int x = 0;
-	int y = 0;
-
-	draw_background(s_cub3d);
-	while (y < 8) // change 8 to map height
-	{
-		x = 0;
-		while (x < 6) // change 6 to map width
-		{
-			if (s_cub3d->map[y][x] == '1')
-				draw_box(s_cub3d->image, 30, 30, x * 32 + 50, y * 32 + 420, GREY_COLOR);
-			else
-			{
-				draw_box(image, 5, 5,
-						 (s_cub3d->player_pos.x + 86) + s_cub3d->player_pos.x * 13,
-						 (s_cub3d->player_pos.y + 454) + s_cub3d->player_pos.y * 22,
-						 RED_COLOR);// change 6 to map width and 8 to map height
-
-				if (s_cub3d->map[y][x] != '\0' && s_cub3d->map[y][x] != ' ')
-				{
-					perform_dda(s_cub3d);
-					draw_box(s_cub3d->image, 31, 31, x * 29 + 56, y * 31 + 423, WHITE_COLOR);
-					for(int i = - WIDTH / 2; i < WIDTH / 2; i++ )
-					{
-						draw_line(image, (s_cub3d->player_pos.x + 86) + s_cub3d->player_pos.x * 13 + 3,
-								  (s_cub3d->player_pos.y + 454) + s_cub3d->player_pos.y * 22,
-								  (s_cub3d->player_pos.x + 86) + s_cub3d->player_pos.x * 13 + 35,
-								  (s_cub3d->player_pos.y + 454) + s_cub3d->player_pos.y * 22,
-								  s_cub3d->player_pos.angle_orientation + i * 0.1);
-					}
-				}
-			}
-			x++;
-		}
-		y++;
-	}
 }

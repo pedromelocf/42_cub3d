@@ -26,8 +26,7 @@ MLX						:= $(addprefix $(MLX_BUILD), $(MLX_FILE))
 
 # Sources
 FILES					:= main \
-						   dda \
-						   draw \
+						   cast_rays \
 						   mlx_handler
 
 OBJECTS					:= $(addprefix $(OBJECTS_DIR), $(addsuffix .o, $(FILES)))

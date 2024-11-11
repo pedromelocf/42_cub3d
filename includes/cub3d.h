@@ -61,10 +61,21 @@ typedef struct s_texture_paths
 
 typedef struct s_player_pos
 {
-	float x;
-	float y;
-	float angle_orientation;
+	double	pos_x;
+	double	pos_y;
 }	t_player_pos;
+
+typedef struct s_player_dir
+{
+	double	dir_x;
+	double	dir_y;
+}	t_player_dir;
+
+typedef struct s_camera_plane
+{
+	double	plane_x;
+	double	plane_y;
+}	t_camera_plane;
 
 typedef struct s_cub3d
 {
@@ -72,17 +83,18 @@ typedef struct s_cub3d
 	t_rgb_colors	rgb_colors;
 	char			map[8][6];
 	t_player_pos	player_pos;
+	t_player_dir 	player_dir;
+	t_camera_plane 	camera_plane;
 	mlx_t 			*mlx;
 	mlx_image_t 	*image;
 }	t_cub3d;
 
 
 int	handle_mlx(mlx_t **mlx, mlx_image_t **image);
-void	draw_box(mlx_image_t *image, int height, int width, int beginx, int beginy, uint32_t color);
-void	draw_player_minimap (mlx_image_t *image, t_cub3d *s_cub3d);
 void	handle_key_hooks(t_cub3d *s_cub3d);
-void	draw_line(mlx_image_t *image, int beginx, int beginy, int endx, int endy, float angle);
-void	draw_background(t_cub3d *s_cub3d);
-void	perform_dda(t_cub3d *s_cub3d);
+int	cast_rays(t_cub3d *s_cub3d);
+double	dda(t_cub3d *s_cub3d, double raydir_x, double raydir_y);
+void	draw_rays(int x, double perp_wall_dist, t_cub3d *s_cub3d);
+void	draw_line(int x, int draw_start,int draw_end, t_cub3d *s_cub3d);
 
 #endif
