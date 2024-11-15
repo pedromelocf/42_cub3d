@@ -8,8 +8,11 @@ LIBRARIES_DIR			:= libraries/
 LIBFT_DIR				:= $(addprefix $(LIBRARIES_DIR), libft/)
 LIBFT_FILE 				:= libft.a
 
-MAKE					:= make
-MAKE_LIBS				:= $(MAKE) -sC
+TEST_NAME				:= test_cub3D
+TEST_DIR				:= tests/
+
+MAKE					:= make -s
+MAKE_LIBS				:= $(MAKE) -C
 CC						:= cc
 CFLAGS					:= -Wall -Wextra -Werror -Wunreachable-code -Ofast -g3
 MKDIR					:= mkdir -p
@@ -24,9 +27,15 @@ LIBFT					:= $(addprefix $(LIBFT_DIR), $(LIBFT_FILE))
 LIBFT_HEADER			:= $(addprefix $(LIBFT_DIR), includes/libft.h)
 HEADERS					:= -I $(HEADERS_DIR)
 
-MESSAGE1 := "------------------Compiling cub3D Objects!-------------------"
+# Tests
+TEST_FILES 				:= test_execution
+
+TEST_SOURCES			:= $(addprefix $(TEST_DIR), $(addsuffix .c, $(TEST_FILES)))
+TEST_FLAGS				:= -lcriterion
+
+MESSAGE1 := "------------------Compiling cub3d Objects!-------------------"
 MESSAGE2 := "---------------Objects Compiled Successfully!----------------"
-MESSAGE3 := "-----------------'./cub3D' File Created Successfully!----------------"
+MESSAGE3 := "-----------------'.cub3d' File Compiled Successfully!----------------"
 
 # Rules
 .PHONY: all clean fclean re bonus
@@ -34,14 +43,14 @@ MESSAGE3 := "-----------------'./cub3D' File Created Successfully!--------------
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJECTS)
-	@ echo ' '
-	@ echo $(MESSAGE1)
-	@ echo ' '
+	@echo ' '
+	@echo $(MESSAGE1)
+	@echo ' '
 	@$(CC) $(CFLAGS) $^ $(LIBFT) -o $(NAME) $(INCLUDES) $(LFLAGS)
-	@ echo $(MESSAGE2)
-	@ echo ' '
-	@ echo $(MESSAGE3)
-	@ echo ' '
+	@echo $(MESSAGE2)
+	@echo ' '
+	@echo $(MESSAGE3)
+	@echo ' '
 
 cleanlibft:
 	@$(MAKE_LIBS) $(LIBFT_DIR) clean
@@ -50,13 +59,13 @@ fcleanlibft:
 	@$(MAKE_LIBS) $(LIBFT_DIR) fclean
 
 clean: cleanlibft
-	@ rm -rf $(OBJECTS_DIR)
+	@$(RM) $(OBJECTS_DIR)
 
 fclean: clean fcleanlibft
 	@$(RM) $(NAME)
 
 re: fclean
-	@$(MAKE) -s
+	@$(MAKE)
 
 bonus: all
 
@@ -68,3 +77,8 @@ libraries: $(LIBFT)
 
 $(LIBFT):
 	@$(MAKE_LIBS) $(LIBFT_DIR)
+
+test: $(NAME) $(TEST_SOURCES)
+	@$(CC) $(CFLAGS) $(TEST_FLAGS) $(TEST_SOURCES) $(LIBFT) -o $(TEST_NAME) $(HEADERS)
+	@./$(TEST_NAME)
+	@$(RM) $(TEST_NAME)
