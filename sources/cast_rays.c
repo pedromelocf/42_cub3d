@@ -97,7 +97,7 @@ void	draw_rays(int x, double perp_wall_dist, t_cub3d *s_cub3d)
     int draw_end = lineHeight / 2 + HEIGHT / 2;
 	if (draw_end >= HEIGHT || perp_wall_dist == 0)
 		draw_end = HEIGHT - 1;
-	draw_line_red(x, draw_start, draw_end, s_cub3d);
+	draw_line_black(x, draw_start, draw_end, s_cub3d);
 }
 
 void	draw_line_red(int x, int draw_start,int draw_end, t_cub3d *s_cub3d)
@@ -118,13 +118,37 @@ void	draw_line_white(int x, int draw_start,int draw_end, t_cub3d *s_cub3d)
 	}
 }
 
-
-void	draw_background (t_cub3d *s_cub3d)
+void	draw_line_black(int x, int draw_start,int draw_end, t_cub3d *s_cub3d)
 {
-	int i = 0;
-	while (i < WIDTH)
+	while (draw_start < draw_end)
 	{
-		draw_line_white(i, 0, HEIGHT, s_cub3d);
-		i++;
+		mlx_put_pixel(s_cub3d->image, x, draw_start, BLACK_COLOR);
+		draw_start++;
 	}
+}
+void	draw_box(mlx_image_t *image, int height, int width, int beginx, int beginy, uint32_t color)
+{
+	int temp = beginx;
+	int x = 0;
+	int y = 0;
+
+	while (y < height)
+	{
+		while (x < width)
+		{
+			mlx_put_pixel(image, beginx, beginy, color);
+			beginx++;
+			x++;
+		}
+		beginx = temp;
+		x = 0;
+		y += 1;
+		beginy++;
+	}
+}
+
+void	draw_background(t_cub3d *s_cub3d)
+{
+	draw_box(s_cub3d->image, HEIGHT / 2, WIDTH, 0, 0, GREY_COLOR);
+	draw_box(s_cub3d->image, HEIGHT / 2, WIDTH, 0,HEIGHT / 2, WHITE_COLOR);
 }
