@@ -79,7 +79,7 @@ double	dda(t_cub3d *s_cub3d, double raydir_x, double raydir_y)
 			map_y += step_y;
 			side = 1;
 		}
-		if (s_cub3d->map[map_x][map_y] == '1') hit = 1;
+		if (s_cub3d->map[map_y][map_x] == '1') hit = 1;
  	}
 	if (side == 0)
 		perp_wall_dist = (side_dist_x - delta_dist_x);
@@ -97,14 +97,34 @@ void	draw_rays(int x, double perp_wall_dist, t_cub3d *s_cub3d)
     int draw_end = lineHeight / 2 + HEIGHT / 2;
 	if(draw_end >= HEIGHT)
 		draw_end = HEIGHT - 1;
-	draw_line(x, draw_start, draw_end, s_cub3d);
+	draw_line_red(x, draw_start, draw_end, s_cub3d);
 }
 
-void	draw_line(int x, int draw_start,int draw_end, t_cub3d *s_cub3d)
+void	draw_line_red(int x, int draw_start,int draw_end, t_cub3d *s_cub3d)
 {
 	while (draw_start < draw_end)
 	{
 		mlx_put_pixel(s_cub3d->image, x, draw_start, RED_COLOR);
 		draw_start++;
+	}
+}
+
+void	draw_line_white(int x, int draw_start,int draw_end, t_cub3d *s_cub3d)
+{
+	while (draw_start < draw_end)
+	{
+		mlx_put_pixel(s_cub3d->image, x, draw_start, WHITE_COLOR);
+		draw_start++;
+	}
+}
+
+
+void	draw_background (t_cub3d *s_cub3d)
+{
+	int i = 0;
+	while (i < WIDTH)
+	{
+		draw_line_white(i, 0, HEIGHT, s_cub3d);
+		i++;
 	}
 }

@@ -18,6 +18,7 @@ int	main()
 		{"./path_to_the_north_texture", "./path_to_the_south_texture",
 		 " ./path_to_the_west_texture", "./path_to_the_east_texture"},
 		{"220,100,0", "225,30,0"},
+
 		{"111111",
 		       "100001",
 			   "100001",
@@ -27,16 +28,15 @@ int	main()
 			   "100001",
 			   "111111"},
 
-		{4, 3},
+		{3, 4},
 		{1, 0},
 		{0, 0.66},
 		NULL,
 		NULL
 	};
-
 	if (handle_mlx(&s_cub3d.mlx, &s_cub3d.image))
 		return (EXIT_FAILURE);
-
+	draw_background(&s_cub3d);
 	cast_rays(&s_cub3d);
 	mlx_loop_hook(s_cub3d.mlx, (void *)handle_key_hooks, &s_cub3d);
 	mlx_loop(s_cub3d.mlx);

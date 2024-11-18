@@ -43,4 +43,22 @@ void	handle_key_hooks(t_cub3d *s_cub3d)
 		mlx_close_window(s_cub3d->mlx);
 		exit(EXIT_SUCCESS);
 	}
+	if (mlx_is_key_down(s_cub3d->mlx, MLX_KEY_RIGHT))
+	{
+		float vector = 1.5 * M_PI / 180.0;
+		s_cub3d->camera_plane.plane_x = s_cub3d->camera_plane.plane_x * cos(vector) - s_cub3d->camera_plane.plane_y * sin(vector);
+		s_cub3d->camera_plane.plane_y = s_cub3d->camera_plane.plane_x * sin(vector) + s_cub3d->camera_plane.plane_y * cos(vector);
+		s_cub3d->player_dir.dir_x =  s_cub3d->player_dir.dir_x * cos(vector)  - s_cub3d->player_dir.dir_y * sin(vector);
+		s_cub3d->player_dir.dir_y =  s_cub3d->player_dir.dir_x * sin(vector) + s_cub3d->player_dir.dir_y * cos(vector) ;
+	}
+	if (mlx_is_key_down(s_cub3d->mlx, MLX_KEY_LEFT))
+	{
+		float vector = -1.5 * M_PI / 180.0;
+		s_cub3d->camera_plane.plane_x = s_cub3d->camera_plane.plane_x * cos(vector) - s_cub3d->camera_plane.plane_y * sin(vector);
+		s_cub3d->camera_plane.plane_y = s_cub3d->camera_plane.plane_x * sin(vector) + s_cub3d->camera_plane.plane_y * cos(vector);
+		s_cub3d->player_dir.dir_x =  s_cub3d->player_dir.dir_x * cos(vector) - s_cub3d->player_dir.dir_y * sin(vector);
+		s_cub3d->player_dir.dir_y =  s_cub3d->player_dir.dir_x * sin(vector) + s_cub3d->player_dir.dir_y * cos(vector);
+	}
+	draw_background(s_cub3d);
+	cast_rays(s_cub3d);
 }
