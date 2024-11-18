@@ -59,6 +59,14 @@ void	handle_key_hooks(t_cub3d *s_cub3d)
 		s_cub3d->player_dir.dir_x =  s_cub3d->player_dir.dir_x * cos(vector) - s_cub3d->player_dir.dir_y * sin(vector);
 		s_cub3d->player_dir.dir_y =  s_cub3d->player_dir.dir_x * sin(vector) + s_cub3d->player_dir.dir_y * cos(vector);
 	}
+//	if (mlx_is_key_down(s_cub3d->mlx, MLX_KEY_W))
+//		s_cub3d->player_pos.pos_y += 0.01;
+//	if (mlx_is_key_down(s_cub3d->mlx, MLX_KEY_A))
+//		s_cub3d->player_pos.pos_y -= 0.01;
+//	if (mlx_is_key_down(s_cub3d->mlx, MLX_KEY_S))
+//		s_cub3d->player_pos.pos_x += 0.01;
+//	if (mlx_is_key_down(s_cub3d->mlx, MLX_KEY_D))
+//		s_cub3d->player_pos.pos_x -= 0.01;
 	draw_background(s_cub3d);
 	cast_rays(s_cub3d);
 }

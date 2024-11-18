@@ -34,8 +34,8 @@
 # define FALSE 0
 # define TRUE 1
 
-# define WIDTH 1080
-# define HEIGHT 720
+# define WIDTH 1920
+# define HEIGHT 1080
 
 # define BLACK_COLOR 0x00000ff
 # define RED_COLOR  0xff0000ff
@@ -81,7 +81,7 @@ typedef struct s_cub3d
 {
 	t_texture_paths	texture_paths;
 	t_rgb_colors	rgb_colors;
-	char			map[8][6];
+	char			map[14][25];
 	t_player_pos	player_pos;
 	t_player_dir 	player_dir;
 	t_camera_plane 	camera_plane;

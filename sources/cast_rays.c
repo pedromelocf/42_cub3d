@@ -92,10 +92,10 @@ void	draw_rays(int x, double perp_wall_dist, t_cub3d *s_cub3d)
 {
 	int lineHeight = (int)(HEIGHT / perp_wall_dist);
 	int draw_start = -lineHeight / 2 + HEIGHT / 2;
-	if(draw_start < 0)
+	if (draw_start < 0 || perp_wall_dist == 0)
 		draw_start = 0;
     int draw_end = lineHeight / 2 + HEIGHT / 2;
-	if(draw_end >= HEIGHT)
+	if (draw_end >= HEIGHT || perp_wall_dist == 0)
 		draw_end = HEIGHT - 1;
 	draw_line_red(x, draw_start, draw_end, s_cub3d);
 }
