@@ -81,7 +81,7 @@ typedef struct s_cub3d
 {
 	t_texture_paths	texture_paths;
 	t_rgb_colors	rgb_colors;
-	char			map[14][25];
+	char			map[14][23];
 	t_player_pos	player_pos;
 	t_player_dir 	player_dir;
 	t_camera_plane 	camera_plane;
