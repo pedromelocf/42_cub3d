@@ -19,9 +19,9 @@ int cast_rays(t_cub3d *s_cub3d)
 	double	raydir_y;
 	double  perp_wall_dist;
 
-	for (int x = 0; x < WIDTH; x++)
+	for (int x = 0; x < MAP_WIDTH; x++)
 	{
-		camera_x = 2 * x / (double)WIDTH - 1;
+		camera_x = 2 * x / (double)MAP_WIDTH - 1;
 		raydir_x = s_cub3d->player_dir.dir_x + s_cub3d->camera_plane.plane_x * camera_x;
 		raydir_y = s_cub3d->player_dir.dir_y + s_cub3d->camera_plane.plane_y * camera_x;
 		perp_wall_dist = dda(s_cub3d, raydir_x, raydir_y);
@@ -41,7 +41,7 @@ double	dda(t_cub3d *s_cub3d, double raydir_x, double raydir_y)
 	int map_x = (int)s_cub3d->player_pos.pos_x;
 	int map_y = (int)s_cub3d->player_pos.pos_y;
 	int hit = 0;
-	int side;
+	int side = 0;
 	double perp_wall_dist;
 
 	if (raydir_x < 0)
@@ -90,13 +90,13 @@ double	dda(t_cub3d *s_cub3d, double raydir_x, double raydir_y)
 
 void	draw_rays(int x, double perp_wall_dist, t_cub3d *s_cub3d)
 {
-	int lineHeight = (int)(HEIGHT / perp_wall_dist);
-	int draw_start = -lineHeight / 2 + HEIGHT / 2;
+	int lineHeight = (int)(MAP_HEIGHT / perp_wall_dist);
+	int draw_start = -lineHeight / 2 + MAP_HEIGHT / 2;
 	if (draw_start < 0 || perp_wall_dist == 0)
 		draw_start = 0;
-    int draw_end = lineHeight / 2 + HEIGHT / 2;
-	if (draw_end >= HEIGHT || perp_wall_dist == 0)
-		draw_end = HEIGHT - 1;
+    int draw_end = lineHeight / 2 + MAP_HEIGHT / 2;
+	if (draw_end >= MAP_HEIGHT || perp_wall_dist == 0)
+		draw_end = MAP_HEIGHT - 1;
 	draw_line_black(x, draw_start, draw_end, s_cub3d);
 }
 
@@ -149,6 +149,6 @@ void	draw_box(mlx_image_t *image, int height, int width, int beginx, int beginy,
 
 void	draw_background(t_cub3d *s_cub3d)
 {
-	draw_box(s_cub3d->image, HEIGHT / 2, WIDTH, 0, 0, GREY_COLOR);
-	draw_box(s_cub3d->image, HEIGHT / 2, WIDTH, 0,HEIGHT / 2, WHITE_COLOR);
+	draw_box(s_cub3d->image, MAP_HEIGHT / 2, MAP_WIDTH, 0, 0, GREY_COLOR);
+	draw_box(s_cub3d->image, MAP_HEIGHT / 2, MAP_WIDTH, 0,MAP_HEIGHT / 2, WHITE_COLOR);
 }

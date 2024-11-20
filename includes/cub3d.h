@@ -34,8 +34,11 @@
 # define FALSE 0
 # define TRUE 1
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define MAP_WIDTH 1920
+# define MAP_HEIGHT 1080
+# define TEXTURE_WIDTH 64
+# define TEXTURE_HEIGHT 64
+
 
 # define BLACK_COLOR 0x00000ff
 # define RED_COLOR  0xff0000ff
