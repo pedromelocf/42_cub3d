@@ -1,8 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_execution.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jovicto2 <jovicto2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/20 15:12:37 by jovicto2          #+#    #+#             */
+/*   Updated: 2024/11/20 15:12:41 by jovicto2         ###   ########.org.br   */
+/*                                                                            */
+/* ************************************************************************** */
+
 //TODO: suppress open fds
 //TODO: check if the log will be created when valgrind is empty of errors
-//TODO: apply 42 header
-//TODO: change libft's Makefile to all flags
-//TODO: change compile messsages in Makefile
 //TODO: separate tests made in main to a test file
 //TODO: -Wno-unused-result in CFLAGS on both Makefile
 
