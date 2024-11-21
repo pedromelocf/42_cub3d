@@ -90,6 +90,7 @@ typedef struct s_cub3d
 	t_camera_plane 	camera_plane;
 	mlx_t 			*mlx;
 	mlx_image_t 	*image;
+	mlx_texture_t 	*texture;
 }	t_cub3d;
 
 

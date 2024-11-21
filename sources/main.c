@@ -38,7 +38,8 @@ int	main()
 		{1, 0},
 		{0, 0.66},
 		NULL,
-		NULL
+		NULL,
+		mlx_load_png("./textures/tree.png")
 	};
 	if (handle_mlx(&s_cub3d.mlx, &s_cub3d.image) == 1)
 		return (EXIT_FAILURE);
@@ -47,5 +48,6 @@ int	main()
 	mlx_loop_hook(s_cub3d.mlx, (void *)handle_key_hooks, &s_cub3d);
 	mlx_loop(s_cub3d.mlx);
 	mlx_terminate(s_cub3d.mlx);
+	mlx_delete_texture(s_cub3d.texture);
 	return (EXIT_SUCCESS);
 }
