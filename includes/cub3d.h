@@ -97,11 +97,12 @@ int	handle_mlx(mlx_t **mlx, mlx_image_t **image);
 void	handle_key_hooks(t_cub3d *s_cub3d);
 int	cast_rays(t_cub3d *s_cub3d);
 double	dda(t_cub3d *s_cub3d, double raydir_x, double raydir_y);
-void	draw_rays(int x, double perp_wall_dist, t_cub3d *s_cub3d);
+void	draw_line(int x, double perp_wall_dist, t_cub3d *s_cub3d);
 void	draw_line_red(int x, int draw_start,int draw_end, t_cub3d *s_cub3d);
 void	draw_line_white(int x, int draw_start,int draw_end, t_cub3d *s_cub3d);
 void	draw_line_black(int x, int draw_start,int draw_end, t_cub3d *s_cub3d);
 void	draw_box(mlx_image_t *image, int height, int width, int beginx, int beginy, uint32_t color);
 void	draw_background (t_cub3d *s_cub3d);
+void	draw_texturized_line(int x, int draw_start, int draw_end, t_cub3d *s_cub3d, double perp_wall_dist);
 
 #endif

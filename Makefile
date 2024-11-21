@@ -27,7 +27,8 @@ MLX						:= $(addprefix $(MLX_BUILD), $(MLX_FILE))
 # Sources
 FILES					:= main \
 						   cast_rays \
-						   mlx_handler
+						   mlx_handler \
+						   textures
 
 OBJECTS					:= $(addprefix $(OBJECTS_DIR), $(addsuffix .o, $(FILES)))
 LIBFT_FILE				:= libft.a

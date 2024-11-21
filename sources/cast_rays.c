@@ -25,7 +25,7 @@ int cast_rays(t_cub3d *s_cub3d)
 		raydir_x = s_cub3d->player_dir.dir_x + s_cub3d->camera_plane.plane_x * camera_x;
 		raydir_y = s_cub3d->player_dir.dir_y + s_cub3d->camera_plane.plane_y * camera_x;
 		perp_wall_dist = dda(s_cub3d, raydir_x, raydir_y);
-		draw_rays(x, perp_wall_dist, s_cub3d);
+		draw_line(x, perp_wall_dist, s_cub3d);
 	}
 	return (0);
 }
@@ -88,16 +88,16 @@ double	dda(t_cub3d *s_cub3d, double raydir_x, double raydir_y)
 	return (perp_wall_dist);
 }
 
-void	draw_rays(int x, double perp_wall_dist, t_cub3d *s_cub3d)
+void	draw_line(int x, double perp_wall_dist, t_cub3d *s_cub3d)
 {
-	int lineHeight = (int)(MAP_HEIGHT / perp_wall_dist);
-	int draw_start = -lineHeight / 2 + MAP_HEIGHT / 2;
+	int line_height = (int)(MAP_HEIGHT / perp_wall_dist); //set line_height variable
+	int draw_start = -line_height / 2 + MAP_HEIGHT / 2;
 	if (draw_start < 0 || perp_wall_dist == 0)
 		draw_start = 0;
-    int draw_end = lineHeight / 2 + MAP_HEIGHT / 2;
+    int draw_end = line_height / 2 + MAP_HEIGHT / 2;
 	if (draw_end >= MAP_HEIGHT || perp_wall_dist == 0)
 		draw_end = MAP_HEIGHT - 1;
-	draw_line_black(x, draw_start, draw_end, s_cub3d);
+	draw_texturized_line(x, draw_start,draw_end, s_cub3d, perp_wall_dist);
 }
 
 void	draw_line_red(int x, int draw_start,int draw_end, t_cub3d *s_cub3d)
