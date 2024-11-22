@@ -31,6 +31,7 @@ FILES					:=  algorithm \
 							draw \
 							main \
 							mlx_handler \
+							player_movements \
 							textures \
 							wall_calculations
 

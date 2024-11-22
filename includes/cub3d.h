@@ -43,6 +43,14 @@
 # define GREEN_COLOR 0x00FF00FF
 # define YELLOW_COLLOR 0xFFFF00FF
 
+# define ESC MLX_KEY_ESCAPE
+# define W MLX_KEY_W
+# define A MLX_KEY_A
+# define S MLX_KEY_S
+# define D MLX_KEY_D
+# define RIGHT MLX_KEY_RIGHT
+# define LEFT MLX_KEY_LEFT
+
 # define FOV 66
 
 enum				e_side
@@ -135,5 +143,11 @@ void	draw_line(int x, t_cub3d *s_cub3d);
 void	draw_box(mlx_image_t *image, int height, int width, int beginx, int beginy, uint32_t color);
 void	draw_background (t_cub3d *s_cub3d);
 void	draw_texturized_line(int x, t_cub3d *s_cub3d);
+void	player_rotate(t_cub3d *s_cub3d, float multiply_factor);
+void	player_move_forward(t_cub3d *s_cub3d);
+void	player_move_backward(t_cub3d *s_cub3d);
+void	player_move_left(t_cub3d *s_cub3d);
+void	player_move_right(t_cub3d *s_cub3d);
+
 
 #endif
