@@ -4,7 +4,10 @@ static uint32_t	get_color(t_cub3d *s_cub3d);
 
 void	draw_texturized_line(int x, int draw_start, int draw_end, t_cub3d *s_cub3d)
 {
-	s_cub3d->textures.wall_hit_x = s_cub3d->player_pos.y + s_cub3d->rays.perp_wall_dist * s_cub3d->player_dir.y;
+	if (s_cub3d->rays.side_hit == WEST_EAST)
+		s_cub3d->textures.wall_hit_x = s_cub3d->player_pos.y + s_cub3d->rays.perp_wall_dist * s_cub3d->rays.ray_dir_y;
+	else
+		s_cub3d->textures.wall_hit_x = s_cub3d->player_pos.x + s_cub3d->rays.perp_wall_dist * s_cub3d->rays.ray_dir_x;
 	s_cub3d->textures.wall_hit_x -= floor(s_cub3d->textures.wall_hit_x);
 	s_cub3d->textures.step = 1.0 * MAP_HEIGHT / s_cub3d->rays.line_height;
 	s_cub3d->textures.texture_x = (int)(s_cub3d->textures.wall_hit_x * (double)s_cub3d->textures.wall_texture->width);
@@ -27,7 +30,7 @@ static uint32_t	get_color(t_cub3d *s_cub3d)
 	int	texture_x;
 
 	texture_y = (int)s_cub3d->textures.texture_y;
-	texture_x = (int)s_cub3d->textures.texture_x;
+	texture_x = s_cub3d->textures.texture_x;
 	pixel = &s_cub3d->textures.wall_texture->pixels[(texture_y * s_cub3d->textures.wall_texture->width + texture_x) * s_cub3d->textures.wall_texture->bytes_per_pixel];
 	return (pixel[0] << 24 | pixel[1] << 16 | pixel[2] << 8 | pixel[3]);
 }
