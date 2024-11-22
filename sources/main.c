@@ -15,8 +15,6 @@
 int	main()
 {
 	t_cub3d s_cub3d = {
-		{"./path_to_the_north_texture", "./path_to_the_south_texture",
-		 " ./path_to_the_west_texture", "./path_to_the_east_texture"},
 		{"220,100,0", "225,30,0"},
 
 		{"1111111111111111111111",
@@ -39,7 +37,14 @@ int	main()
 		{0, 0.66},
 		NULL,
 		NULL,
-		mlx_load_png("./textures/tree.png")
+
+		{{mlx_load_png("./textures/server.png"),
+		 		mlx_load_png("./textures/server.png"),
+				mlx_load_png("./textures/server.png"),
+				mlx_load_png("./textures/server.png"),
+				},
+		0, 0, 0, 0, 0,
+		}
 	};
 	if (handle_mlx(&s_cub3d.mlx, &s_cub3d.image) == 1)
 		return (EXIT_FAILURE);
@@ -48,6 +53,9 @@ int	main()
 	mlx_loop_hook(s_cub3d.mlx, (void *)handle_key_hooks, &s_cub3d);
 	mlx_loop(s_cub3d.mlx);
 	mlx_terminate(s_cub3d.mlx);
-	mlx_delete_texture(s_cub3d.texture);
+	mlx_delete_texture(s_cub3d.textures.loaded_textures.no_loaded_texture);
+	mlx_delete_texture(s_cub3d.textures.loaded_textures.so_loaded_texture);
+	mlx_delete_texture(s_cub3d.textures.loaded_textures.we_loaded_texture);
+	mlx_delete_texture(s_cub3d.textures.loaded_textures.ea_loaded_texture);
 	return (EXIT_SUCCESS);
 }

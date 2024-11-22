@@ -36,31 +36,38 @@
 
 # define MAP_WIDTH 1920
 # define MAP_HEIGHT 1080
-# define TEXTURE_WIDTH 64
-# define TEXTURE_HEIGHT 64
 
-
-# define BLACK_COLOR 0x00000ff
-# define RED_COLOR  0xff0000ff
-# define WHITE_COLOR  0xffffffff
-# define GREY_COLOR	0x00FF0000
+# define BLACK_COLOR 0x00000FF
+# define RED_COLOR  0xFF0000FF
+# define WHITE_COLOR  0xFFFFFFFF
+# define GREEN_COLOR 0x00FF00FF
 # define YELLOW_COLLOR 0xFFFF00FF
 
 # define FOV 66
+
+typedef struct s_loaded_textures
+{
+	mlx_texture_t *no_loaded_texture;
+	mlx_texture_t *so_loaded_texture;
+	mlx_texture_t *we_loaded_texture;
+	mlx_texture_t *ea_loaded_texture;
+}	t_loaded_textures;
+
+typedef struct s_texture
+{
+	t_loaded_textures loaded_textures;
+	double	wall_hit_x;
+	double	step;
+	double	texture_pos;
+	double	texture_y;
+	int 	texture_x;
+}	t_texture;
 
 typedef struct s_rgb_colors
 {
 	char	floor_color[50];
 	char	ceiling_color[50];
 }	t_rgb_colors;
-
-typedef struct s_texture_paths
-{
-	char	no_texture_path[50];
-	char	so_texture_path[50];
-	char	we_texture_path[50];
-	char	ea_texture_path[50];
-}	t_texture_paths;
 
 typedef struct s_player_pos
 {
@@ -82,7 +89,6 @@ typedef struct s_camera_plane
 
 typedef struct s_cub3d
 {
-	t_texture_paths	texture_paths;
 	t_rgb_colors	rgb_colors;
 	char			map[14][23];
 	t_player_pos	player_pos;
@@ -90,7 +96,7 @@ typedef struct s_cub3d
 	t_camera_plane 	camera_plane;
 	mlx_t 			*mlx;
 	mlx_image_t 	*image;
-	mlx_texture_t 	*texture;
+	t_texture 		textures;
 }	t_cub3d;
 
 
