@@ -46,8 +46,9 @@ int	main()
 			NULL,
 		0, 0, 0, 0, 0,
 		},
-		{0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0, 0}
+		{0, 0, 0, 0},
+		{0, 0, 0, 0, 0, 0, 0, 0},
+		{0, 0, 0}
 	};
 	if (handle_mlx(&s_cub3d.mlx, &s_cub3d.image) == 1)
 		return (EXIT_FAILURE);

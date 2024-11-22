@@ -27,6 +27,7 @@ MLX						:= $(addprefix $(MLX_BUILD), $(MLX_FILE))
 # Sources
 FILES					:= main \
 						   cast_rays \
+						   draw \
 						   mlx_handler \
 						   textures
 
