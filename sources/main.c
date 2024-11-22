@@ -39,12 +39,14 @@ int	main()
 		NULL,
 
 		{{mlx_load_png("./textures/server.png"),
-		 		mlx_load_png("./textures/server.png"),
+		 		mlx_load_png("./textures/rgb.png"),
 				mlx_load_png("./textures/server.png"),
 				mlx_load_png("./textures/server.png"),
 				},
+			NULL,
 		0, 0, 0, 0, 0,
-		}
+		},
+		{0, 0, 0, 0, 0}
 	};
 	if (handle_mlx(&s_cub3d.mlx, &s_cub3d.image) == 1)
 		return (EXIT_FAILURE);

@@ -45,6 +45,13 @@
 
 # define FOV 66
 
+enum				e_side
+{
+	WEST_EAST,
+	NORTH_SOUTH
+};
+
+
 typedef struct s_loaded_textures
 {
 	mlx_texture_t *no_loaded_texture;
@@ -56,6 +63,7 @@ typedef struct s_loaded_textures
 typedef struct s_texture
 {
 	t_loaded_textures loaded_textures;
+	mlx_texture_t	*wall_texture;
 	double	wall_hit_x;
 	double	step;
 	double	texture_pos;
@@ -69,47 +77,45 @@ typedef struct s_rgb_colors
 	char	ceiling_color[50];
 }	t_rgb_colors;
 
-typedef struct s_player_pos
+typedef struct s_coordinates
 {
-	double	pos_x;
-	double	pos_y;
-}	t_player_pos;
+	double	x;
+	double	y;
+}	t_coordinates;
 
-typedef struct s_player_dir
+typedef struct s_rays
 {
-	double	dir_x;
-	double	dir_y;
-}	t_player_dir;
-
-typedef struct s_camera_plane
-{
-	double	plane_x;
-	double	plane_y;
-}	t_camera_plane;
+	int	line_height;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	perp_wall_dist;
+	int		side_hit;
+}	t_rays;
 
 typedef struct s_cub3d
 {
 	t_rgb_colors	rgb_colors;
 	char			map[14][23];
-	t_player_pos	player_pos;
-	t_player_dir 	player_dir;
-	t_camera_plane 	camera_plane;
+	t_coordinates	player_pos;
+	t_coordinates 	player_dir;
+	t_coordinates 	camera_plane;
 	mlx_t 			*mlx;
 	mlx_image_t 	*image;
 	t_texture 		textures;
+	t_rays			rays;
 }	t_cub3d;
 
 
 int	handle_mlx(mlx_t **mlx, mlx_image_t **image);
 void	handle_key_hooks(t_cub3d *s_cub3d);
 int	cast_rays(t_cub3d *s_cub3d);
-double	dda(t_cub3d *s_cub3d, double raydir_x, double raydir_y);
-void	draw_line(int x, double perp_wall_dist, t_cub3d *s_cub3d);
+void	dda(t_cub3d *s_cub3d);
+void	draw_line(int x, t_cub3d *s_cub3d);
 void	draw_line_red(int x, int draw_start,int draw_end, t_cub3d *s_cub3d);
 void	draw_line_white(int x, int draw_start,int draw_end, t_cub3d *s_cub3d);
 void	draw_line_black(int x, int draw_start,int draw_end, t_cub3d *s_cub3d);
 void	draw_box(mlx_image_t *image, int height, int width, int beginx, int beginy, uint32_t color);
 void	draw_background (t_cub3d *s_cub3d);
-void	draw_texturized_line(int x, int draw_start, int draw_end, t_cub3d *s_cub3d, double perp_wall_dist);
+void	draw_texturized_line(int x, int draw_start, int draw_end, t_cub3d *s_cub3d);
 
 #endif
