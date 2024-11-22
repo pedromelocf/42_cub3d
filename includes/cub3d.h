@@ -126,13 +126,14 @@ typedef struct s_cub3d
 
 int	handle_mlx(mlx_t **mlx, mlx_image_t **image);
 void	handle_key_hooks(t_cub3d *s_cub3d);
-int	cast_rays(t_cub3d *s_cub3d);
+int	algorithm(t_cub3d *s_cub3d);
+void	ray_calculations(t_cub3d *s_cub3d, double camera_x);
 void	dda(t_cub3d *s_cub3d);
+void	load_texture_info(t_cub3d *s_cub3d);
+void wall_calculations (t_cub3d *s_cub3d);
 void	draw_line(int x, t_cub3d *s_cub3d);
 void	draw_box(mlx_image_t *image, int height, int width, int beginx, int beginy, uint32_t color);
 void	draw_background (t_cub3d *s_cub3d);
 void	draw_texturized_line(int x, t_cub3d *s_cub3d);
-void	set_wall_hit_x (t_cub3d *s_cub3d);
-void	load_texture_info(t_cub3d *s_cub3d);
 
 #endif

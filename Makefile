@@ -25,11 +25,14 @@ MLX_BUILD				:= $(addprefix $(MLX_DIR), $(BUILD_DIR))
 MLX						:= $(addprefix $(MLX_BUILD), $(MLX_FILE))
 
 # Sources
-FILES					:= main \
-						   cast_rays \
-						   draw \
-						   mlx_handler \
-						   textures
+FILES					:=  algorithm \
+						 	cast_rays \
+							dda \
+							draw \
+							main \
+							mlx_handler \
+							textures \
+							wall_calculations
 
 OBJECTS					:= $(addprefix $(OBJECTS_DIR), $(addsuffix .o, $(FILES)))
 LIBFT_FILE				:= libft.a

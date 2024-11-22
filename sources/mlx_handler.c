@@ -85,5 +85,5 @@ void	handle_key_hooks(t_cub3d *s_cub3d)
 			s_cub3d->player_pos.x += s_cub3d->camera_plane.x * 0.1;
 	}
 	draw_background(s_cub3d);
-	cast_rays(s_cub3d);
+	algorithm(s_cub3d);
 }
