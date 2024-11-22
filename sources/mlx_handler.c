@@ -14,13 +14,13 @@
 
 int	handle_mlx(mlx_t **mlx, mlx_image_t **image)
 {
-	*mlx = mlx_init(MAP_WIDTH, MAP_HEIGHT, "CUB3D", true);
+	*mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "CUB3D", true);
 	if (!(*mlx))
 	{
 		puts(mlx_strerror(mlx_errno));
 		return (1);
 	}
-	*image = mlx_new_image(*mlx, MAP_WIDTH, MAP_HEIGHT);
+	*image = mlx_new_image(*mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (!(*image))
 	{
 		mlx_close_window(*mlx);

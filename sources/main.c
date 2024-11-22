@@ -46,12 +46,11 @@ int	main()
 			NULL,
 		0, 0, 0, 0, 0,
 		},
-		{0, 0, 0, 0, 0}
+		{0, 0, 0, 0, 0, 0, 0},
+		{0, 0, 0, 0, 0, 0, 0, 0}
 	};
 	if (handle_mlx(&s_cub3d.mlx, &s_cub3d.image) == 1)
 		return (EXIT_FAILURE);
-	draw_background(&s_cub3d);
-	cast_rays(&s_cub3d);
 	mlx_loop_hook(s_cub3d.mlx, (void *)handle_key_hooks, &s_cub3d);
 	mlx_loop(s_cub3d.mlx);
 	mlx_terminate(s_cub3d.mlx);

@@ -34,8 +34,8 @@
 # define FALSE 0
 # define TRUE 1
 
-# define MAP_WIDTH 1920
-# define MAP_HEIGHT 1080
+# define SCREEN_WIDTH 1920
+# define SCREEN_HEIGHT 1080
 
 # define BLACK_COLOR 0x00000FF
 # define RED_COLOR  0xFF0000FF
@@ -50,7 +50,6 @@ enum				e_side
 	WEST_EAST,
 	NORTH_SOUTH
 };
-
 
 typedef struct s_loaded_textures
 {
@@ -67,7 +66,7 @@ typedef struct s_texture
 	double	wall_hit_x;
 	double	step;
 	double	texture_pos;
-	double	texture_y;
+	int		texture_y;
 	int 	texture_x;
 }	t_texture;
 
@@ -86,11 +85,25 @@ typedef struct s_coordinates
 typedef struct s_rays
 {
 	int	line_height;
+	int	draw_start;
+	int	draw_end;
 	double	ray_dir_x;
 	double	ray_dir_y;
 	double	perp_wall_dist;
 	int		side_hit;
 }	t_rays;
+
+typedef struct s_dda
+{
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int step_x;
+	int step_y;
+	int map_x;
+	int map_y;
+}	t_dda;
 
 typedef struct s_cub3d
 {
@@ -103,19 +116,16 @@ typedef struct s_cub3d
 	mlx_image_t 	*image;
 	t_texture 		textures;
 	t_rays			rays;
+	t_dda			dda;
 }	t_cub3d;
-
 
 int	handle_mlx(mlx_t **mlx, mlx_image_t **image);
 void	handle_key_hooks(t_cub3d *s_cub3d);
 int	cast_rays(t_cub3d *s_cub3d);
 void	dda(t_cub3d *s_cub3d);
 void	draw_line(int x, t_cub3d *s_cub3d);
-void	draw_line_red(int x, int draw_start,int draw_end, t_cub3d *s_cub3d);
-void	draw_line_white(int x, int draw_start,int draw_end, t_cub3d *s_cub3d);
-void	draw_line_black(int x, int draw_start,int draw_end, t_cub3d *s_cub3d);
 void	draw_box(mlx_image_t *image, int height, int width, int beginx, int beginy, uint32_t color);
 void	draw_background (t_cub3d *s_cub3d);
-void	draw_texturized_line(int x, int draw_start, int draw_end, t_cub3d *s_cub3d);
+void	draw_texturized_line(int x, t_cub3d *s_cub3d);
 
 #endif
