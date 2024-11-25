@@ -42,11 +42,11 @@ static void	set_map(t_cub3d *s_cub3d)
 static void	set_delta_distances(t_cub3d *s_cub3d)
 {
 	if (s_cub3d->rays.ray_dir_x == 0)
-		s_cub3d->dda.delta_dist_x = 1e30;
+		s_cub3d->dda.delta_dist_x = HUGE_VAL;
 	else
 		s_cub3d->dda.delta_dist_x = fabs(1 / s_cub3d->rays.ray_dir_x);
 	if (s_cub3d->rays.ray_dir_y == 0)
-		s_cub3d->dda.delta_dist_y = 1e30;
+		s_cub3d->dda.delta_dist_y = HUGE_VAL;
 	else
 		s_cub3d->dda.delta_dist_y = fabs(1 / s_cub3d->rays.ray_dir_y);
 }
