@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algorithm.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pmelo-ca <pmelo-ca@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/25 12:27:15 by pmelo-ca          #+#    #+#             */
+/*   Updated: 2024/11/25 12:28:15 by pmelo-ca         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 static void	camera_calculation(int x, double *camera_x);
 
-int algorithm(t_cub3d *s_cub3d)
+int	algorithm(t_cub3d *s_cub3d)
 {
 	double	camera_x;
-	int x;
+	int		x;
 
 	x = 0;
 	while (x < SCREEN_WIDTH)

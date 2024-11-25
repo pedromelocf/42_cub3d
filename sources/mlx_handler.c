@@ -6,12 +6,11 @@
 /*   By: pmelo-ca <pmelo-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 20:14:26 by pmelo-ca          #+#    #+#             */
-/*   Updated: 2024/10/29 20:15:53 by pmelo-ca         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:28:33 by pmelo-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 
 int	handle_mlx(mlx_t **mlx, mlx_image_t **image)
 {
@@ -56,4 +55,3 @@ void	handle_key_hooks(t_cub3d *s_cub3d)
 	draw_background(s_cub3d);
 	algorithm(s_cub3d);
 }
-
