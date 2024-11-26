@@ -56,25 +56,25 @@ static void	set_step_and_side_distances(t_cub3d *s_cub3d)
 	if (s_cub3d->rays.ray_dir_x < 0)
 	{
 		s_cub3d->dda.step_x = -1;
-		s_cub3d->dda.side_dist_x = ((int)s_cub3d->player_pos.x
+		s_cub3d->dda.side_dist_x = (s_cub3d->player_pos.x
 				- s_cub3d->dda.map_x) * s_cub3d->dda.delta_dist_x;
 	}
 	else
 	{
 		s_cub3d->dda.step_x = 1;
 		s_cub3d->dda.side_dist_x = (s_cub3d->dda.map_x + 1.0
-				- (int)s_cub3d->player_pos.x) * s_cub3d->dda.delta_dist_x;
+				- s_cub3d->player_pos.x) * s_cub3d->dda.delta_dist_x;
 	}
 	if (s_cub3d->rays.ray_dir_y < 0)
 	{
 		s_cub3d->dda.step_y = -1;
-		s_cub3d->dda.side_dist_y = ((int)s_cub3d->player_pos.y
+		s_cub3d->dda.side_dist_y = (s_cub3d->player_pos.y
 				- s_cub3d->dda.map_y) * s_cub3d->dda.delta_dist_y;
 	}
 	else
 	{
 		s_cub3d->dda.step_y = 1;
 		s_cub3d->dda.side_dist_y = (s_cub3d->dda.map_y + 1.0
-				- (int)s_cub3d->player_pos.y) * s_cub3d->dda.delta_dist_y;
+				- s_cub3d->player_pos.y) * s_cub3d->dda.delta_dist_y;
 	}
 }
