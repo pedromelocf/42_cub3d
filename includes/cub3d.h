@@ -41,8 +41,8 @@
 # define RED_COLOR 0xFF0000FF
 # define WHITE_COLOR 0xFFFFFFFF
 # define GREEN_COLOR 0x00FF00FF
-# define YELLOW_COLLOR 0xFFFF00FF
-# define GREY_COLLOR 0xFFFF0000
+# define YELLOW_COLOR 0xFFFF00FF
+# define GREY_COLOR 0xFFFF0000
 
 # define ESC MLX_KEY_ESCAPE
 # define W MLX_KEY_W
@@ -63,10 +63,10 @@ enum					e_side
 
 typedef struct s_loaded_textures
 {
-	mlx_texture_t		*no_loaded_texture;
-	mlx_texture_t		*so_loaded_texture;
-	mlx_texture_t		*we_loaded_texture;
-	mlx_texture_t		*ea_loaded_texture;
+	mlx_texture_t		*no;
+	mlx_texture_t		*so;
+	mlx_texture_t		*we;
+	mlx_texture_t		*ea;
 }						t_loaded_textures;
 
 typedef struct s_texture

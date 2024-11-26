@@ -24,7 +24,8 @@ void	player_rotate(t_cub3d *s_cub3d, float multipli_factor)
 		+ s_cub3d->player_dir.y * cos(multipli_factor);
 }
 
-void	player_move_forward(t_cub3d *s_cub3d, float move_speed, double colision_distance)
+void	player_move_forward(t_cub3d *s_cub3d, float move_speed,
+		double colision_distance)
 {
 	if (s_cub3d->map[(int)(s_cub3d->player_pos.y + (int)s_cub3d->player_dir.y
 	* (move_speed + colision_distance))][(int)s_cub3d->player_pos.x] == '0')

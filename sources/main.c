@@ -39,9 +39,9 @@ int	main()
 		NULL,
 
 		{{mlx_load_png("./textures/rgb.png"),
-		 		mlx_load_png("./textures/scifi.png"),
-				mlx_load_png("./textures/cat3.png"),
-				mlx_load_png("./textures/E.png"),
+		 		mlx_load_png("./textures/fire.png"),
+				mlx_load_png("./textures/fire.png"),
+				mlx_load_png("/nfs/homes/pmelo-ca/Downloads/fractal.png"),
 				},
 			NULL,
 		0, 0, 0, 0, 0,
@@ -55,9 +55,9 @@ int	main()
 	mlx_loop_hook(s_cub3d.mlx, (void *)handle_key_hooks, &s_cub3d);
 	mlx_loop(s_cub3d.mlx);
 	mlx_terminate(s_cub3d.mlx);
-	mlx_delete_texture(s_cub3d.textures.loaded_textures.no_loaded_texture);
-	mlx_delete_texture(s_cub3d.textures.loaded_textures.so_loaded_texture);
-	mlx_delete_texture(s_cub3d.textures.loaded_textures.we_loaded_texture);
-	mlx_delete_texture(s_cub3d.textures.loaded_textures.ea_loaded_texture);
+	mlx_delete_texture(s_cub3d.textures.loaded_textures.no);
+	mlx_delete_texture(s_cub3d.textures.loaded_textures.so);
+	mlx_delete_texture(s_cub3d.textures.loaded_textures.we);
+	mlx_delete_texture(s_cub3d.textures.loaded_textures.ea);
 	return (EXIT_SUCCESS);
 }
