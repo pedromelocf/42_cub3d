@@ -21,8 +21,7 @@ void	draw_texturized_line(int x, t_cub3d *s_cub3d)
 	i = s_cub3d->wall.draw_start;
 	while (i < s_cub3d->wall.draw_end)
 	{
-		s_cub3d->textures.texture_y = (int)s_cub3d->textures.texture_pos
-			& (s_cub3d->textures.wall_texture->height - 1);
+		s_cub3d->textures.texture_y = (int)s_cub3d->textures.texture_pos;
 		s_cub3d->textures.texture_pos += s_cub3d->textures.step;
 		mlx_put_pixel(s_cub3d->image, x, i, get_color(s_cub3d));
 		i++;
