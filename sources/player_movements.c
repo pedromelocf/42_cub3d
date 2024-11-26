@@ -28,39 +28,39 @@ void	player_move_forward(t_cub3d *s_cub3d, float move_speed,
 		double colision_distance)
 {
 	if (s_cub3d->map[(int)(s_cub3d->player_pos.y + (int)s_cub3d->player_dir.y
-	* (move_speed + colision_distance))][(int)s_cub3d->player_pos.x] == '0')
+	* (move_speed + colision_distance))][(int)s_cub3d->player_pos.x] <= '0')
 		s_cub3d->player_pos.y += s_cub3d->player_dir.y * move_speed;
 	if (s_cub3d->map[(int)s_cub3d->player_pos.y][(int)(s_cub3d->player_pos.x
-		+ s_cub3d->player_dir.x * (move_speed + colision_distance))] == '0')
+		+ s_cub3d->player_dir.x * (move_speed + colision_distance))] <= '0')
 		s_cub3d->player_pos.x += s_cub3d->player_dir.x * move_speed;
 }
 
 void	player_move_backward(t_cub3d *s_cub3d, float move_speed, double colision_distance)
 {
 	if (s_cub3d->map[(int)(s_cub3d->player_pos.y - (int)s_cub3d->player_dir.y *
-		(move_speed + colision_distance))][(int)s_cub3d->player_pos.x] == '0')
+		(move_speed + colision_distance))][(int)s_cub3d->player_pos.x] <= '0')
 		s_cub3d->player_pos.y -= s_cub3d->player_dir.y * move_speed;
 	if (s_cub3d->map[(int)s_cub3d->player_pos.y][(int)(s_cub3d->player_pos.x
-		- (int)s_cub3d->player_dir.x * (move_speed + colision_distance))] == '0')
+		- (int)s_cub3d->player_dir.x * (move_speed + colision_distance))] <= '0')
 		s_cub3d->player_pos.x -= s_cub3d->player_dir.x * move_speed;
 }
 
 void	player_move_left(t_cub3d *s_cub3d, float move_speed, double colision_distance)
 {
 	if (s_cub3d->map[(int)(s_cub3d->player_pos.y - (int)s_cub3d->camera_plane.y *
-		(move_speed + colision_distance))] [(int)s_cub3d->player_pos.x] == '0')
+		(move_speed + colision_distance))] [(int)s_cub3d->player_pos.x] <= '0')
 		s_cub3d->player_pos.y -= s_cub3d->camera_plane.y *move_speed;
 	if (s_cub3d->map[(int)(s_cub3d->player_pos.y - (int)s_cub3d->camera_plane.x *
-		(move_speed + colision_distance))] [(int)s_cub3d->player_pos.x] == '0')
+		(move_speed + colision_distance))] [(int)s_cub3d->player_pos.x] <= '0')
 		s_cub3d->player_pos.x -= s_cub3d->camera_plane.x * move_speed;
 }
 
 void	player_move_right(t_cub3d *s_cub3d, float move_speed, double colision_distance)
 {
 	if (s_cub3d->map[(int)(s_cub3d->player_pos.y + (int)s_cub3d->camera_plane.y *
-		(move_speed + colision_distance))] [(int)s_cub3d->player_pos.x] == '0')
+		(move_speed + colision_distance))] [(int)s_cub3d->player_pos.x] <= '0')
 		s_cub3d->player_pos.y += s_cub3d->camera_plane.y * move_speed;
 	if (s_cub3d->map[(int)(s_cub3d->player_pos.y + (int)s_cub3d->camera_plane.x *
-		(move_speed + colision_distance))]	[(int)s_cub3d->player_pos.x] == '0')
+		(move_speed + colision_distance))]	[(int)s_cub3d->player_pos.x] <= '0')
 		s_cub3d->player_pos.x += s_cub3d->camera_plane.x * move_speed;
 }
