@@ -19,8 +19,11 @@ int	main(int argc, char **argv)
 //	char *i = malloc(33);
 //	ft_memset(i, 0, 33);
 //	i[0] = '0';
-//	printf(still reachable main: %c\n", *i);
-//	ssize_t f = open("test.txt", O_RDONLY);
+//	printf("still reachable main: %c\n", *i);
+//	i = malloc(33);
+//	ft_memset(i, 0, 33);
+//	printf("possibly lost main: %c\n", *i);
+//	ssize_t f = open("Makefile", O_RDONLY);
 //	pid_t pido = fork();
 //	if (pido != 0)
 //		execl("/bin/ls", "ls", "42", NULL);
