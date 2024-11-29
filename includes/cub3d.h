@@ -14,11 +14,14 @@
 # define CUB3D_H
 
 # include "../libraries/libft/includes/libft.h"
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
-# define MSG_ERROR "\033[1;41mError!\033[0m\n\033[0;31m"
-# define MSG_LEN_ERROR 25
+# define MSG_ERROR "\033[1;41mError\033[0m\n\033[0;31m"
+# define MSG_LEN_ERROR 24
 
-# define MSG_ARG_COUNT "Arguments: Invalid number of arguments.\n\tUsage: ./cub3d <map.cub>"
+# define MSG_ARG_COUNT "  Arguments: Invalid number of arguments.\n    Usage: ./cub3d <map.cub>"
 # define MSG_INV_EXEC "Invalid .cub map file\n"
 # define MSG_INV_TEXTURES "Invalid texture configurations\n"
 # define MSG_INV_COLORS "Invalid RGB colors configurations\n"
