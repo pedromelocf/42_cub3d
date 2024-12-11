@@ -8,6 +8,9 @@ LIBRARIES_DIR			:= libraries/
 LIBFT_DIR				:= $(addprefix $(LIBRARIES_DIR), libft/)
 MLX_DIR					:= $(addprefix $(LIBRARIES_DIR), mlx/)
 
+TEST_NAME				:= test_cub3D
+TEST_DIR				:= tests/
+
 # Flags
 MAKE					:= make
 MAKE_LIBS				:= make -sC
@@ -38,6 +41,12 @@ FILES					:=  algorithm \
 OBJECTS					:= $(addprefix $(OBJECTS_DIR), $(addsuffix .o, $(FILES)))
 LIBFT_FILE				:= libft.a
 LIBFT 					:= $(addprefix $(LIBFT_DIR), $(LIBFT_FILE))
+
+# Tests
+TEST_FILES 				:= test_execution
+
+TEST_SOURCES			:= $(addprefix $(TEST_DIR), $(addsuffix .c, $(TEST_FILES)))
+TEST_FLAGS				:= -lcriterion
 
 MESSAGE1 := "-----------------.cub3d Compiled Successfully----------------"
 
@@ -77,5 +86,10 @@ re: fclean all
 
 bonus: all
 
+test: $(NAME) $(TEST_SOURCES)
+	@$(CC) $(CFLAGS) $(TEST_FLAGS) $(TEST_SOURCES) $(LIBFT) -o $(TEST_NAME) $(HEADERS)
+	@./$(TEST_NAME)
+	@$(RM) $(TEST_NAME)
+
 # Rules
-.PHONY: all clean fclean re bonus libraries
+.PHONY: all clean fclean re bonus libraries test
