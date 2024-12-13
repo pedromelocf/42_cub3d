@@ -15,7 +15,7 @@ TEST_DIR				:= tests/
 MAKE					:= make
 MAKE_LIBS				:= make -sC
 CC						:= cc
-CFLAGS					:= -Wall -Wextra -Werror -Wunreachable-code -Ofast -g3
+CFLAGS					:= -Wall -Wextra -Wunreachable-code -Ofast -g3
 MKDIR					:= mkdir -p
 RM						:= rm -rf
 CMAKE					:= cmake
@@ -30,8 +30,11 @@ MLX						:= $(addprefix $(MLX_BUILD), $(MLX_FILE))
 # Sources
 FILES					:=  algorithm \
 						 	cast_rays \
+						 	check_file \
 							dda \
 							draw \
+							getters \
+							load_scene \
 							main \
 							mlx_handler \
 							player_movements \

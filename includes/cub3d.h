@@ -22,11 +22,13 @@
 # define MSG_ERROR "\033[1;41mError!\033[0m\n\033[0;31m"
 # define MSG_LEN_ERROR 25
 
-# define MSG_ARG_COUNT "Arguments: Invalid number of arguments.\n"
-# define MSG_INV_EXEC "Invalid .cub map file\n"
-# define MSG_INV_TEXTURES "Invalid texture configurations\n"
-# define MSG_INV_COLORS "Invalid RGB colors configurations\n"
-# define MSG_INV_ARG "Invalid arguments\n"
+# define MSG_INV_ARG_COUNT "Arguments: Invalid number of arguments.\n"
+# define MSG_INV_FILE_DIR "File: Specified file is actually a directory.\n"
+# define MSG_INV_FILE_OPEN "File: Could not open specified file.\n"
+# define MSG_INV_FILE_EXT_CUB "File: Invalid file extension. Must be '.cub'.\n"
+# define MSG_INV_TEXTURES "Invalid texture configurations.\n"
+# define MSG_INV_COLORS "Invalid RGB colors configurations.\n"
+# define MSG_INV_ARG "Invalid arguments.\n"
 
 # define MSG_ERROR_EXIT "\033[0m\n"
 # define MSG_LEN_ERROR_EXIT 5
@@ -82,8 +84,8 @@ typedef struct s_texture
 
 typedef struct s_rgb_colors
 {
-	char				floor_color[50];
-	char				ceiling_color[50];
+	char				*floor_color;
+	char				*ceiling_color;
 }						t_rgb_colors;
 
 typedef struct s_coordinates
@@ -122,7 +124,7 @@ typedef struct s_dda
 typedef struct s_cub3d
 {
 	t_rgb_colors		rgb_colors;
-	char				map[14][23];
+	char				**map;
 	t_coordinates		player_pos;
 	t_coordinates		player_dir;
 	t_coordinates		camera_plane;
@@ -132,8 +134,21 @@ typedef struct s_cub3d
 	t_rays				rays;
 	t_dda				dda;
 	t_wall				wall;
+    char                *file;
 }						t_cub3d;
 
+void                    handle_error(const char *message);
+void					check_file(char *file);
+void					load_scene(char *file, t_cub3d *scene);
+mlx_texture_t			*get_texture(char *line);
+char					*get_color(char *line);
+void					get_map(char *line, t_cub3d *scene, int fd);
+void					check_elements(t_cub3d *scene);
+bool					is_valid_png(char *file);
+bool					is_valid_color_tag(char *line);
+bool					is_valid_map(char *line);
+void					run_scene(t_cub3d *scene);
+void					clean_scene(t_cub3d *scene);
 int						handle_mlx(mlx_t **mlx, mlx_image_t **image);
 void					handle_key_hooks(t_cub3d *s_cub3d);
 int						algorithm(t_cub3d *s_cub3d);
