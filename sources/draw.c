@@ -22,7 +22,7 @@ void	draw_texturized_line(int x, t_cub3d *s_cub3d)
 	while (i < s_cub3d->wall.draw_end)
 	{
 		s_cub3d->textures.texture_y = (int)s_cub3d->textures.texture_pos;
-		s_cub3d->textures.texture_pos += s_cub3d->textures.step;
+                s_cub3d->textures.texture_pos += s_cub3d->textures.step;
 		mlx_put_pixel(s_cub3d->image, x, i, get_color(s_cub3d));
 		i++;
 	}
@@ -37,7 +37,7 @@ static uint32_t	get_color(t_cub3d *s_cub3d)
 	texture_y = s_cub3d->textures.texture_y;
 	texture_x = s_cub3d->textures.texture_x;
 	pixel = &s_cub3d->textures.wall_texture->pixels[(texture_y
-			* s_cub3d->textures.wall_texture->width + texture_x)
+		* s_cub3d->textures.wall_texture->width + texture_x)
 		* s_cub3d->textures.wall_texture->bytes_per_pixel];
 	return (pixel[0] << 24 | pixel[1] << 16 | pixel[2] << 8 | pixel[3]);
 }
