@@ -14,7 +14,7 @@
 
 void	check_file(char	*file)
 {
-	ssize_t	fd;
+	int	fd;
 
     fd = open(file, O_DIRECTORY);
     if (fd >= 0)
@@ -33,7 +33,7 @@ void	check_file(char	*file)
 
 bool	is_valid_png(char *file)
 {
-    ssize_t fd;
+    int	fd;
 
     fd = open(file, O_DIRECTORY);
     if (fd >= 0)

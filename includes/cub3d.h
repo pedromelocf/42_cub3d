@@ -26,6 +26,7 @@
 # define MSG_INV_FILE_DIR "File: Specified file is actually a directory.\n"
 # define MSG_INV_FILE_OPEN "File: Could not open specified file.\n"
 # define MSG_INV_FILE_EXT_CUB "File: Invalid file extension. Must be '.cub'.\n"
+# define MSG_INV_MLX_INIT "MLX: Could not initialize MLX.\n"
 # define MSG_INV_TEXTURES "Invalid texture configurations.\n"
 # define MSG_INV_COLORS "Invalid RGB colors configurations.\n"
 # define MSG_INV_ARG "Invalid arguments.\n"

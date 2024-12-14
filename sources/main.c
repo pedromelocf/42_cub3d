@@ -49,21 +49,13 @@ int	main(int argc, char **argv)
 		{0, 0, 0, 0, 0, 0, 0, 0},
 		{0, 0, 0}
 	};
-     if (argc != 2)
-         handle_error(MSG_INV_ARG_COUNT);
+	if (argc != 2)
+		handle_error(MSG_INV_ARG_COUNT);
     check_file(argv[1]);
     load_scene(argv[1], &scene);
     run_scene(&scene);
-	if (handle_mlx(&s_cub3d.mlx, &s_cub3d.image) == 1)
-		return (EXIT_FAILURE);
-	mlx_loop_hook(s_cub3d.mlx, (void *)handle_key_hooks, &s_cub3d);
-	mlx_loop(s_cub3d.mlx);
 	clean_scene(&scene);
-	mlx_terminate(s_cub3d.mlx);
-	mlx_delete_texture(s_cub3d.textures.loaded_textures.no);
-	mlx_delete_texture(s_cub3d.textures.loaded_textures.so);
-	mlx_delete_texture(s_cub3d.textures.loaded_textures.we);
-	mlx_delete_texture(s_cub3d.textures.loaded_textures.ea);
+
 
 //     //	char *i = malloc(33);
 //     //	ft_memset(i, 0, 33);
@@ -86,6 +78,27 @@ int	main(int argc, char **argv)
 // }
 //
     exit(EXIT_FAILURE);
+}
+void run_scene(t_cub3d *scene)
+{
+	mlx_t *mlx;
+	mlx_image_t *image;
+
+	if (handle_mlx(&mlx, &image) == 1)
+		handle_error(MSG_INV_MLX_INIT);
+	scene->mlx = mlx;
+	scene->image = image;
+	mlx_loop_hook(mlx, (void *)handle_key_hooks, scene);
+	mlx_loop(mlx);
+}
+
+void clean_scene(t_cub3d *scene)
+{
+	mlx_terminate(scene->mlx);
+	mlx_delete_texture(scene.textures.loaded_textures.no);
+	mlx_delete_texture(scene.textures.loaded_textures.so);
+	mlx_delete_texture(scene.textures.loaded_textures.we);
+	mlx_delete_texture(scene.textures.loaded_textures.ea);
 }
 
 void handle_error(const char* message)

@@ -20,7 +20,7 @@ mlx_texture_t	*get_texture(char *line)
 	trimmed_line = ft_strtrim(line, " ");
     texture = NULL;
     if (is_valid_png(trimmed_line))
-        texture = mlx_load_png(trimmed_line);
+		texture = mlx_load_png(trimmed_line);
     return (texture);
 }
 
