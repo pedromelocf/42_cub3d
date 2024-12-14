@@ -53,7 +53,7 @@
 # define LEFT MLX_KEY_LEFT
 # define MOVE_SPEED_MULTI 4.0
 # define ROTATE_SPEED_MULTI 1.5
-# define COLISION_DISTANCE_MULTI 4.0
+# define COLISION_DISTANCE_MULTI 8.0
 
 enum					e_side
 {
