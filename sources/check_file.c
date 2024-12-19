@@ -12,6 +12,8 @@
 
 #include "../includes/cub3d.h"
 
+static bool	is_empty_line(char *line);
+
 void	check_file(char	*file)
 {
 	int	fd;
@@ -80,7 +82,25 @@ bool	is_valid_color_tag(char *line)
     return (true);
 }
 
-void    check_elements(t_cub3d *scene)
+bool    is_valid_map(t_list *list)
 {
-	(void)scene;
+  	t_list	*lines;
+
+    lines = list;
+    while (lines)
+    {
+		if (!is_empty_line(lines->content))
+	        return (false);
+        lines = lines->next;
+    }
+    return (true);
+}
+
+static bool	is_empty_line(char *line)
+{
+    while (*line && ft_strchr(BLANK_CHARS, *line))
+		line++;
+	if (*line)
+		return (false);
+	return (true);
 }
