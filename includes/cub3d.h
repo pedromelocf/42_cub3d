@@ -26,13 +26,17 @@
 # define MSG_INV_FILE_DIR "File: Specified file is actually a directory.\n"
 # define MSG_INV_FILE_OPEN "File: Could not open specified file.\n"
 # define MSG_INV_FILE_EXT_CUB "File: Invalid file extension. Must be '.cub'.\n"
+# define MSG_INV_FILE_ELEMENTS "File: Invalid elements or players in file.\n"
+# define MSG_INV_FILE_MAP "Map: Map is not playable.\n"
 # define MSG_INV_MLX_INIT "MLX: Could not initialize MLX.\n"
 # define MSG_INV_TEXTURES "Invalid texture configurations.\n"
 # define MSG_INV_COLORS "Invalid RGB colors configurations.\n"
 # define MSG_INV_ARG "Invalid arguments.\n"
 
-# define MSG_ERROR_EXIT "\033[0m\n"
+# define MSG_ERROR_EXIT "\033[0m"
 # define MSG_LEN_ERROR_EXIT 5
+
+#define BLANK_CHARS " \t\v"
 
 # define FALSE 0
 # define TRUE 1
@@ -142,14 +146,17 @@ void                    handle_error(const char *message);
 void					check_file(char *file);
 void					load_scene(char *file, t_cub3d *scene);
 mlx_texture_t			*get_texture(char *line);
-char					*get_color(char *line);
+char					*get_rgb(char *line);
 void					get_map(char *line, t_cub3d *scene, int fd);
+void					get_player_elements(t_cub3d *scene);
 void					check_elements(t_cub3d *scene);
+void					flood_fill(char **map, int rows, t_coordinates c);
 bool					is_valid_png(char *file);
 bool					is_valid_color_tag(char *line);
-bool					is_valid_map(char *line);
+bool					is_valid_map(t_list *lines);
+bool					is_empty_line(char* line);
 void					run_scene(t_cub3d *scene);
-void					clean_scene(t_cub3d *scene);
+void					clean_scene(t_cub3d *scene, char *message);
 int						handle_mlx(mlx_t **mlx, mlx_image_t **image);
 void					handle_key_hooks(t_cub3d *s_cub3d);
 int						algorithm(t_cub3d *s_cub3d);
