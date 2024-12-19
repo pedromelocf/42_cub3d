@@ -65,12 +65,7 @@ static void	check_identifiers(char *line, t_cub3d *scene, int fd)
 
 void	check_elements(t_cub3d	*scene)
 {
-	if (scene->player_pos.x == -1
-        || scene->player_pos.y == -1
-        || scene->player_dir.x == -1
-        || scene->player_dir.y == -1
-        || scene->camera_plane.x == -1
-        || scene->camera_plane.y == -1
+	if (scene->player_pos.x == PLAYER_ERROR
         || !scene->textures.loaded_textures.no
         || !scene->textures.loaded_textures.so
         || !scene->textures.loaded_textures.we

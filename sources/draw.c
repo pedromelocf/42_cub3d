@@ -67,9 +67,22 @@ void	draw_box(mlx_image_t *image, int height, int width, int beginx,
 	}
 }
 
+static u_int32_t	str_to_color(char *str)
+{
+	char	**rgb;
+	u_int32_t	color;
+
+	rgb = ft_split(str, ',');
+	color = ft_atoi(rgb[0]) << 24 | ft_atoi(rgb[1]) << 16 | ft_atoi(rgb[2]) << 8 | 255;
+	ft_for_each((void **)rgb, free);
+	free(rgb);
+	return (color);
+}
+
 void	draw_background(t_cub3d *s_cub3d)
 {
-	draw_box(s_cub3d->image, SCREEN_HEIGHT / 2, SCREEN_WIDTH, 0, 0, GREY_COLOR);
+	draw_box(s_cub3d->image, SCREEN_HEIGHT / 2, SCREEN_WIDTH,
+		0, 0, str_to_color(s_cub3d->rgb_colors.floor_color));
 	draw_box(s_cub3d->image, SCREEN_HEIGHT / 2, SCREEN_WIDTH, 0, SCREEN_HEIGHT
-		/ 2, WHITE_COLOR);
+		/ 2, str_to_color(s_cub3d->rgb_colors.ceiling_color));
 }

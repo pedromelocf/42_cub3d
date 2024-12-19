@@ -12,16 +12,136 @@
 
 #include "../includes/cub3d.h"
 
+void    print_map(char **map);
+void    print_scene(t_cub3d *cub);
+
 int	main(int argc, char **argv)
 {
+	// t_cub3d scene = {
+	// 	{"220,100,0", "225,30,0"},
+	//
+	// 	{"1111111111111111111111",
+	// 	       "1000000000N00000000001",
+ //   		       "1000000000000000000001",
+	// 	       "1000000000000000000001",
+	// 	       "1000000000000000000001",
+	// 	       "1000000000000000000001",
+	// 	       "1000000111111111000001",
+	// 	       "1000000000000000000001",
+	// 	       "1000000000000000000001",
+	// 	       "1000000000000000000001",
+	// 	       "1000000000000000000001",
+	// 	       "1000000000000000000001",
+	// 		   "1111111111111111111111",
+	// 		   },
+	//
+	// 	{1, 1},
+	// 	{1, 0},
+	// 	{0, 0.66},
+	// 	NULL,
+	// 	NULL,
+	// 	{{mlx_load_png("assets/textures/psycodelic.png"),
+	// 	 		mlx_load_png("./textures/scifi2.png"),
+	// 			mlx_load_png("assets/textures/psycodelic.png"),
+	// 			mlx_load_png("assets/textures/psycodelic.png"),
+	// 			},
+	// 		NULL,
+	// 	0, 0, 0, 0, 0,
+	// 	},
+	// 	{0, 0, 0, 0},
+	// 	{0, 0, 0, 0, 0, 0, 0, 0},
+	// 	{0, 0, 0},
+	// 	"123"
+	// };
 	t_cub3d scene;
 
 	if (argc != 2)
 		handle_error(MSG_INV_ARG_COUNT);
     check_file(argv[1]);
     load_scene(argv[1], &scene);
+	// print_scene(&scene);
     run_scene(&scene);
 	clean_scene(&scene, NULL);
+}
+
+void	print_map(char **map)
+{
+	int i = 0;
+	int j = 0;
+
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			write(STDOUT_FILENO, &map[i][j], 1);
+			j++;
+		}
+		write(STDOUT_FILENO, "\n", 1);
+		i++;
+	}
+}
+
+void print_scene(t_cub3d *cub)
+{
+    // Print RGB colors
+    printf("RGB Colors:\n");
+    printf("  Floor color:   %s\n", cub->rgb_colors.floor_color ? cub->rgb_colors.floor_color : "(null)");
+    printf("  Ceiling color: %s\n", cub->rgb_colors.ceiling_color ? cub->rgb_colors.ceiling_color : "(null)");
+
+    // Print Map using the provided print_map function
+    print_map(cub->map);
+
+    // Print Player position and direction
+    printf("Player:\n");
+    printf("  Position: (x: %f, y: %f)\n", cub->player_pos.x, cub->player_pos.y);
+    printf("  Direction: (x: %f, y: %f)\n", cub->player_dir.x, cub->player_dir.y);
+    printf("  Camera plane: (x: %f, y: %f)\n", cub->camera_plane.x, cub->camera_plane.y);
+
+    // Print MLX references
+    printf("MLX:\n");
+    printf("  mlx pointer:   %p\n", (void*)cub->mlx);
+    printf("  image pointer: %p\n", (void*)cub->image);
+
+    // Print textures
+    printf("Textures:\n");
+    printf("  NO texture: %p\n", (void*)cub->textures.loaded_textures.no);
+    printf("  SO texture: %p\n", (void*)cub->textures.loaded_textures.so);
+    printf("  WE texture: %p\n", (void*)cub->textures.loaded_textures.we);
+    printf("  EA texture: %p\n", (void*)cub->textures.loaded_textures.ea);
+    printf("  Wall texture: %p\n", (void*)cub->textures.wall_texture);
+    printf("  Wall hit x:   %f\n", cub->textures.wall_hit_x);
+    printf("  Step:         %f\n", cub->textures.step);
+    printf("  Texture pos:  %f\n", cub->textures.texture_pos);
+    printf("  Texture y:    %d\n", cub->textures.texture_y);
+    printf("  Texture x:    %d\n", cub->textures.texture_x);
+
+    // Print rays
+    printf("Rays:\n");
+    printf("  Ray dir x:       %f\n", cub->rays.ray_dir_x);
+    printf("  Ray dir y:       %f\n", cub->rays.ray_dir_y);
+    printf("  Perp wall dist:  %f\n", cub->rays.perp_wall_dist);
+    printf("  Side hit:        %d\n", cub->rays.side_hit);
+
+    // Print DDA
+    printf("DDA:\n");
+    printf("  Side dist x:   %f\n", cub->dda.side_dist_x);
+    printf("  Side dist y:   %f\n", cub->dda.side_dist_y);
+    printf("  Delta dist x:  %f\n", cub->dda.delta_dist_x);
+    printf("  Delta dist y:  %f\n", cub->dda.delta_dist_y);
+    printf("  Step x:        %d\n", cub->dda.step_x);
+    printf("  Step y:        %d\n", cub->dda.step_y);
+    printf("  Map x:         %d\n", cub->dda.map_x);
+    printf("  Map y:         %d\n", cub->dda.map_y);
+
+    // Print Wall
+    printf("Wall:\n");
+    printf("  Line height: %d\n", cub->wall.line_height);
+    printf("  Draw start:  %d\n", cub->wall.draw_start);
+    printf("  Draw end:    %d\n", cub->wall.draw_end);
+
+    // Print file name
+    printf("File: %s\n", cub->file ? cub->file : "(null)");
 }
 
 void run_scene(t_cub3d *scene)
@@ -58,7 +178,7 @@ void clean_scene(t_cub3d *scene, char *message)
     if (scene->textures.wall_texture)
 	  	free(scene->textures.wall_texture);
     if (scene->file)
-		free(scene->file);
+    	free(scene->file);
     if (message)
       	handle_error(message);
     exit(EXIT_SUCCESS);
@@ -71,39 +191,3 @@ void handle_error(const char* message)
     write(STDERR_FILENO, MSG_ERROR_EXIT, MSG_LEN_ERROR_EXIT);
     exit(EXIT_FAILURE);
 }
-
-//	t_cub3d scene = {
-//		{"220,100,0", "225,30,0"},
-//
-//		{"1111111111111111111111",
-//		       "1000000000N00000000001",
-//   		       "1000000000000000000001",
-//		       "1000000000000000000001",
-//		       "1000000000000000000001",
-//		       "1000000000000000000001",
-//		       "1000000111111111000001",
-//		       "1000000000000000000001",
-//		       "1000000000000000000001",
-//		       "1000000000000000000001",
-//		       "1000000000000000000001",
-//		       "1000000000000000000001",
-//			   "1111111111111111111111",
-//			   },
-//
-//		{4, 5},
-//		{1, 0},
-//		{0, 0.66},
-//		NULL,
-//		NULL,
-//		{{mlx_load_png("./textures/psycodelic.png"),
-//		 		mlx_load_png("./textures/psycodelic.png"),
-//				mlx_load_png("./textures/psycodelic.png"),
-//				mlx_load_png("./textures/psycodelic.png"),
-//				},
-//			NULL,
-//		0, 0, 0, 0, 0,
-//		},
-//		{0, 0, 0, 0},
-//		{0, 0, 0, 0, 0, 0, 0, 0},
-//		{0, 0, 0}
-//	};
