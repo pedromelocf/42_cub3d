@@ -24,7 +24,7 @@ mlx_texture_t	*get_texture(char *line)
 	char *trimmed_line;
 	mlx_texture_t *texture;
 
-	trimmed_line = ft_strtrim(line + 3, " \n");
+	trimmed_line = ft_strtrim(line + 3, BLANK_CHARS);
 	texture = NULL;
 	if (is_valid_png(trimmed_line))
 		texture = mlx_load_png(trimmed_line);
@@ -36,7 +36,7 @@ char	*get_rgb(char *line)
 {
 	char *trimmed_line;
 
-	trimmed_line = ft_strtrim(line + 2, " \n");
+	trimmed_line = ft_strtrim(line + 2, BLANK_CHARS);
 	if (is_valid_color_tag(trimmed_line))
 		return (trimmed_line);
 	free(trimmed_line);

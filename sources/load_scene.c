@@ -39,13 +39,14 @@ static void	process_file(t_cub3d *scene)
 		free(line);
 		line = ft_get_next_line(fd);
 	}
-	get_player_elements(scene);
 	close(fd);
+	if (scene->map)
+		get_player_elements(scene);
 }
 
 static void	check_identifiers(char *line, t_cub3d *scene, int fd)
 {
-	if (*line == '\n')
+	if (is_empty_line(line))
 		return ;
 	if (ft_strnstr(line, "NO ", 3))
 		scene->textures.loaded_textures.no = get_texture(line);
@@ -83,8 +84,7 @@ void	flood_fill(char **map, int x, t_coordinates c)
 		|| (int)c.x >= (int)ft_strlen(map[(int)c.y])
 		|| map[(int)c.y][(int)c.x] == '1' || map[(int)c.y][(int)c.x] == '#')
 		return ;
-	if (map[(int)c.y][(int)c.x] == '0' || ft_strrchr(BLANK_CHARS,
-			map[(int)c.y][(int)c.x]))
+	if (map[(int)c.y][(int)c.x] == '0')
 		map[(int)c.y][(int)c.x] = '#';
 	flood_fill(map, x, (t_coordinates){c.x - 1, c.y});
 	flood_fill(map, x, (t_coordinates){c.x + 1, c.y});
