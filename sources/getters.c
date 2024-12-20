@@ -62,7 +62,6 @@ static void    fill_map(char ***map, t_list *list)
     lines = list;
     size = ft_lstsize(lines);
     index = 0;
-	printf("line content: %s\n", (char *)lines->content);
     *map = ft_calloc(size + 1, sizeof(char *));
     while (lines && size > index)
     {
@@ -100,8 +99,8 @@ void	get_player_elements(t_cub3d *scene)
 
 static void fill_player_coordinates(t_cub3d *scene, int x, int y)
 {
-	scene->player_pos.x = x;
-    scene->player_pos.y = y;
+	scene->player_pos.x = x + 0.5;
+    scene->player_pos.y = y + 0.5;
      if (scene->map[x][y] == 'N')
           scene->player_dir.x = 1;
      else if (scene->map[x][y] == 'S')

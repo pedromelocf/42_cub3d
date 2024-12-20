@@ -177,8 +177,8 @@ void clean_scene(t_cub3d *scene, char *message)
       	free(scene->textures.loaded_textures.ea);
     if (scene->textures.wall_texture)
 	  	free(scene->textures.wall_texture);
-    if (scene->file)
-    	free(scene->file);
+    // if (scene->file)
+    // 	free(scene->file);
     if (message)
       	handle_error(message);
     exit(EXIT_SUCCESS);
