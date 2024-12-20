@@ -36,7 +36,10 @@
 # define MSG_ERROR_EXIT "\033[0m"
 # define MSG_LEN_ERROR_EXIT 5
 
-#define BLANK_CHARS " \t\v"
+# define BLANK_CHARS " \t\v"
+# define PLAYER_CHARS "NSWE"
+
+# define PLAYER_ERROR -2
 
 # define FALSE 0
 # define TRUE 1
@@ -142,6 +145,7 @@ typedef struct s_cub3d
     char                *file;
 }						t_cub3d;
 
+void					print_map(char **map);
 void                    handle_error(const char *message);
 void					check_file(char *file);
 void					load_scene(char *file, t_cub3d *scene);

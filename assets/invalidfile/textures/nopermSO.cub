@@ -1,0 +1,17 @@
+F   0,0, 0
+
+NO  assets/textures/redbrick.png
+
+C 0,0, 0
+
+SO assets/textures/noperm
+WE assets/textures/redbrick.png
+EA assets/textures/redbrick.png
+
+
+111111
+100001
+100001
+10N001
+100001
+111111

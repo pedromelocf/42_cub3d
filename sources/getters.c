@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-static void	fill_map(char **map, t_list *lines);
+static void	fill_map(char ***map, t_list *lines);
 static void	fill_player_coordinates(t_cub3d *scene, int x, int y);
 
 mlx_texture_t	*get_texture(char *line)
@@ -43,18 +43,17 @@ void	get_map(char *line, t_cub3d *scene, int fd)
 	t_list	*lines;
 
 	lines = NULL;
-    while (line)
-    {
+	while (line)
+	{
 		ft_lstadd_back(&lines, ft_lstnew(line));
-        free(line);
-        line = ft_get_next_line(fd);
-    }
-    if (is_valid_map(lines))
-		fill_map(scene->map, lines);
-   	ft_lstclear(&lines, free);
+		line = ft_get_next_line(fd);
+	}
+	// if (is_valid_map(lines))
+	fill_map(&scene->map, lines);
+   	// ft_lstclear(&lines, free);
 }
 
-static void    fill_map(char **map, t_list *list)
+static void    fill_map(char ***map, t_list *list)
 {
 	t_list	*lines;
     int		index;
@@ -63,10 +62,10 @@ static void    fill_map(char **map, t_list *list)
     lines = list;
     size = ft_lstsize(lines);
     index = 0;
-    map = ft_calloc(size + 1, sizeof(char *));
+    *map = ft_calloc(size + 1, sizeof(char *));
     while (lines && size > index)
     {
-    	map[index] = ft_strtrim(lines->content, "\n");
+    	(*map)[index] = ft_strtrim(lines->content, "\n");
         lines = lines->next;
         index++;
     }
@@ -85,7 +84,7 @@ void	get_player_elements(t_cub3d *scene)
         y = 0;
         while (scene->map[x][y])
         {
-            if (ft_strchr("NSWE", scene->map[x][y]))
+            if (ft_strchr(PLAYER_CHARS, scene->map[x][y]))
             {
 				fill_player_coordinates(scene, x, y);
                 player_count++;
@@ -95,20 +94,20 @@ void	get_player_elements(t_cub3d *scene)
         x++;
     }
     if (player_count != 1)
-	        scene->player_pos.x = -1;
+	        scene->player_pos.x = PLAYER_ERROR;
 }
 
 static void fill_player_coordinates(t_cub3d *scene, int x, int y)
 {
-	scene->player_pos.x = x;
-    scene->player_pos.y = y;
+	scene->player_pos.x = x + 0.5;
+    scene->player_pos.y = y + 0.5;
      if (scene->map[x][y] == 'N')
-          scene->player_dir.y = 1;
-     else if (scene->map[x][y] == 'S')
-          scene->player_dir.y = -1;
-     else if (scene->map[x][y] == 'W')
-          scene->player_dir.x = -1;
-     else if (scene->map[x][y] == 'E')
           scene->player_dir.x = 1;
+     else if (scene->map[x][y] == 'S')
+          scene->player_dir.x = -1;
+     else if (scene->map[x][y] == 'W')
+          scene->player_dir.y = -1;
+     else if (scene->map[x][y] == 'E')
+          scene->player_dir.y = 1;
      scene->camera_plane.y = 0.66;
 }
