@@ -6,7 +6,7 @@
 /*   By: pmelo-ca <pmelo-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 22:54:02 by pmelo-ca          #+#    #+#             */
-/*   Updated: 2024/11/25 12:27:53 by pmelo-ca         ###   ########.fr       */
+/*   Updated: 2024/12/20 12:26:33 by pmelo-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,6 @@
 # define SCREEN_WIDTH 1920
 # define SCREEN_HEIGHT 1080
 
-# define BLACK_COLOR 0x00000FF
-# define RED_COLOR 0xFF0000FF
-# define WHITE_COLOR 0xFFFFFFFF
-# define GREEN_COLOR 0x00FF00FF
-# define YELLOW_COLOR 0xFFFF00FF
-# define GREY_COLOR 0xFFFF0000
-
 # define ESC MLX_KEY_ESCAPE
 # define W MLX_KEY_W
 # define A MLX_KEY_A
@@ -63,12 +56,14 @@
 # define LEFT MLX_KEY_LEFT
 # define MOVE_SPEED_MULTI 4.0
 # define ROTATE_SPEED_MULTI 1.5
-# define COLISION_DISTANCE_MULTI 4.0
+# define COLISION_DISTANCE_MULTI 10.0
 
 enum					e_side
 {
-	WEST_EAST,
-	NORTH_SOUTH
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST
 };
 
 typedef struct s_loaded_textures
@@ -142,11 +137,11 @@ typedef struct s_cub3d
 	t_rays				rays;
 	t_dda				dda;
 	t_wall				wall;
-    char                *file;
+	char				*file;
 }						t_cub3d;
 
 void					print_map(char **map);
-void                    handle_error(const char *message);
+void					handle_error(const char *message);
 void					check_file(char *file);
 void					load_scene(char *file, t_cub3d *scene);
 mlx_texture_t			*get_texture(char *line);
@@ -158,7 +153,7 @@ void					flood_fill(char **map, int rows, t_coordinates c);
 bool					is_valid_png(char *file);
 bool					is_valid_color_tag(char *line);
 bool					is_valid_map(t_list *lines);
-bool					is_empty_line(char* line);
+bool					is_empty_line(char *line);
 void					run_scene(t_cub3d *scene);
 void					clean_scene(t_cub3d *scene, char *message);
 int						handle_mlx(mlx_t **mlx, mlx_image_t **image);
@@ -174,9 +169,13 @@ void					draw_box(mlx_image_t *image, int height, int width,
 void					draw_background(t_cub3d *s_cub3d);
 void					draw_texturized_line(int x, t_cub3d *s_cub3d);
 void					player_rotate(t_cub3d *s_cub3d, float multiply_factor);
-void					player_move_forward(t_cub3d *s_cub3d, float move_speed, double colision_distance);
-void					player_move_backward(t_cub3d *s_cub3d, float move_speed, double colision_distance);
-void					player_move_left(t_cub3d *s_cub3d, float move_speed, double colision_distance);
-void					player_move_right(t_cub3d *s_cub3d, float move_speed, double colision_distance);
+void					player_move_forward(t_cub3d *s_cub3d, float move_speed,
+							double colision_distance);
+void					player_move_backward(t_cub3d *s_cub3d, float move_speed,
+							double colision_distance);
+void					player_move_left(t_cub3d *s_cub3d, float move_speed,
+							double colision_distance);
+void					player_move_right(t_cub3d *s_cub3d, float move_speed,
+							double colision_distance);
 
 #endif

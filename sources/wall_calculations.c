@@ -6,7 +6,7 @@
 /*   By: pmelo-ca <pmelo-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:27:37 by pmelo-ca          #+#    #+#             */
-/*   Updated: 2024/11/25 12:29:02 by pmelo-ca         ###   ########.fr       */
+/*   Updated: 2024/12/20 12:26:07 by pmelo-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	draw_end_calculation(t_cub3d *s_cub3d)
 
 void	set_wall_hit_x(t_cub3d *s_cub3d)
 {
-	if (s_cub3d->rays.side_hit == WEST_EAST)
+	if (s_cub3d->rays.side_hit == WEST || s_cub3d->rays.side_hit == EAST)
 		s_cub3d->textures.wall_hit_x = s_cub3d->player_pos.y
 			+ s_cub3d->rays.perp_wall_dist * s_cub3d->rays.ray_dir_y;
 	else

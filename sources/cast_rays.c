@@ -6,7 +6,7 @@
 /*   By: pmelo-ca <pmelo-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:29:03 by pmelo-ca          #+#    #+#             */
-/*   Updated: 2024/11/25 12:28:17 by pmelo-ca         ###   ########.fr       */
+/*   Updated: 2024/12/20 12:26:18 by pmelo-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ static void	set_step_and_side_distances(t_cub3d *s_cub3d)
 	if (s_cub3d->rays.ray_dir_x < 0)
 	{
 		s_cub3d->dda.step_x = -1;
-		s_cub3d->dda.side_dist_x = (s_cub3d->player_pos.x
-				- s_cub3d->dda.map_x) * s_cub3d->dda.delta_dist_x;
+		s_cub3d->dda.side_dist_x = (s_cub3d->player_pos.x - s_cub3d->dda.map_x)
+			* s_cub3d->dda.delta_dist_x;
 	}
 	else
 	{
@@ -68,8 +68,8 @@ static void	set_step_and_side_distances(t_cub3d *s_cub3d)
 	if (s_cub3d->rays.ray_dir_y < 0)
 	{
 		s_cub3d->dda.step_y = -1;
-		s_cub3d->dda.side_dist_y = (s_cub3d->player_pos.y
-				- s_cub3d->dda.map_y) * s_cub3d->dda.delta_dist_y;
+		s_cub3d->dda.side_dist_y = (s_cub3d->player_pos.y - s_cub3d->dda.map_y)
+			* s_cub3d->dda.delta_dist_y;
 	}
 	else
 	{

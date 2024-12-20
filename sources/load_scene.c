@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jovicto2 <jovicto2@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: pmelo-ca <pmelo-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:12:37 by jovicto2          #+#    #+#             */
-/*   Updated: 2024/11/20 15:12:41 by jovicto2         ###   ########.org.br   */
+/*   Updated: 2024/12/20 12:26:23 by pmelo-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,29 @@ static bool	is_map_playable(char **map);
 
 void	load_scene(char *file, t_cub3d *scene)
 {
-    ft_bzero(scene, sizeof(t_cub3d));
-    scene->file = file;
+	ft_bzero(scene, sizeof(t_cub3d));
+	scene->file = file;
 	process_file(scene);
-    check_elements(scene);
+	check_elements(scene);
 }
 
 static void	process_file(t_cub3d *scene)
 {
-    int		fd;
-    char	*line;
+	int		fd;
+	char	*line;
 
-    fd = open(scene->file, O_RDONLY);
-    if (fd < 0)
-        handle_error(MSG_INV_FILE_OPEN);
-    line = ft_get_next_line(fd);
-    while (line && *line)
-    {
+	fd = open(scene->file, O_RDONLY);
+	if (fd < 0)
+		handle_error(MSG_INV_FILE_OPEN);
+	line = ft_get_next_line(fd);
+	while (line && *line)
+	{
 		check_identifiers(line, scene, fd);
-        free(line);
-        line = ft_get_next_line(fd);
-    }
-    get_player_elements(scene);
-    close(fd);
+		free(line);
+		line = ft_get_next_line(fd);
+	}
+	get_player_elements(scene);
+	close(fd);
 }
 
 static void	check_identifiers(char *line, t_cub3d *scene, int fd)
@@ -49,12 +49,12 @@ static void	check_identifiers(char *line, t_cub3d *scene, int fd)
 		return ;
 	if (ft_strnstr(line, "NO ", 3))
 		scene->textures.loaded_textures.no = get_texture(line);
-    else if (ft_strnstr(line, "SO ", 3))
-	    scene->textures.loaded_textures.so = get_texture(line);
-    else if (ft_strnstr(line, "WE ", 3))
-	    scene->textures.loaded_textures.we = get_texture(line);
-    else if (ft_strnstr(line, "EA ", 3))
-	    scene->textures.loaded_textures.ea = get_texture(line);
+	else if (ft_strnstr(line, "SO ", 3))
+		scene->textures.loaded_textures.so = get_texture(line);
+	else if (ft_strnstr(line, "WE ", 3))
+		scene->textures.loaded_textures.we = get_texture(line);
+	else if (ft_strnstr(line, "EA ", 3))
+		scene->textures.loaded_textures.ea = get_texture(line);
 	else if (ft_strnstr(line, "F ", 2))
 		scene->rgb_colors.floor_color = get_rgb(line);
 	else if (ft_strnstr(line, "C ", 2))
@@ -63,32 +63,29 @@ static void	check_identifiers(char *line, t_cub3d *scene, int fd)
 		get_map(line, scene, fd);
 }
 
-void	check_elements(t_cub3d	*scene)
+void	check_elements(t_cub3d *scene)
 {
 	if (scene->player_pos.x == PLAYER_ERROR
-        || !scene->textures.loaded_textures.no
-        || !scene->textures.loaded_textures.so
-        || !scene->textures.loaded_textures.we
-        || !scene->textures.loaded_textures.ea
-        || !scene->rgb_colors.floor_color
-        || !scene->rgb_colors.ceiling_color
-        || !scene->map)
-    	clean_scene(scene, MSG_INV_FILE_MAP);
+		|| !scene->textures.loaded_textures.no
+		|| !scene->textures.loaded_textures.so
+		|| !scene->textures.loaded_textures.we
+		|| !scene->textures.loaded_textures.ea || !scene->rgb_colors.floor_color
+		|| !scene->rgb_colors.ceiling_color || !scene->map)
+		clean_scene(scene, MSG_INV_FILE_MAP);
 	flood_fill(scene->map, ft_arr_len(scene->map), scene->player_pos);
-    if (!is_map_playable(scene->map))
-        clean_scene(scene, MSG_INV_FILE_ELEMENTS);
+	if (!is_map_playable(scene->map))
+		clean_scene(scene, MSG_INV_FILE_ELEMENTS);
 }
 
 void	flood_fill(char **map, int x, t_coordinates c)
 {
 	if (c.y < 0 || c.y >= x || c.x < 0
-		|| (int) c.x >= (int) ft_strlen(map[(int)c.y])
-		|| map[(int) c.y][(int) c.x] == '1'
-		|| map[(int) c.y][(int) c.x] == '#')
+		|| (int)c.x >= (int)ft_strlen(map[(int)c.y])
+		|| map[(int)c.y][(int)c.x] == '1' || map[(int)c.y][(int)c.x] == '#')
 		return ;
-	if (map[(int)c.y][(int)c.x] == '0'
-		|| ft_strrchr(BLANK_CHARS, map[(int) c.y][(int) c.x]))
-		map[(int) c.y][(int) c.x] = '#';
+	if (map[(int)c.y][(int)c.x] == '0' || ft_strrchr(BLANK_CHARS,
+			map[(int)c.y][(int)c.x]))
+		map[(int)c.y][(int)c.x] = '#';
 	flood_fill(map, x, (t_coordinates){c.x - 1, c.y});
 	flood_fill(map, x, (t_coordinates){c.x + 1, c.y});
 	flood_fill(map, x, (t_coordinates){c.x, c.y - 1});
@@ -97,7 +94,7 @@ void	flood_fill(char **map, int x, t_coordinates c)
 
 static bool	is_map_playable(char **map)
 {
-	int	i;
+	int i;
 	int map_size;
 
 	i = -1;
@@ -110,9 +107,8 @@ static bool	is_map_playable(char **map)
 		if (map[map_size - 1][i] == '#')
 			return (false);
 	i = 0;
-	while(++i < map_size)
-		if (map[i][0] == '#'
-		|| map[i][ft_strlen(map[i]) - 1] == '#')
+	while (++i < map_size)
+		if (map[i][0] == '#' || map[i][ft_strlen(map[i]) - 1] == '#')
 			return (false);
-    return (true);
+	return (true);
 }

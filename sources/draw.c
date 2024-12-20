@@ -6,13 +6,13 @@
 /*   By: pmelo-ca <pmelo-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:27:24 by pmelo-ca          #+#    #+#             */
-/*   Updated: 2024/11/25 12:35:47 by pmelo-ca         ###   ########.fr       */
+/*   Updated: 2024/12/20 12:26:12 by pmelo-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static uint32_t	get_color(t_cub3d *s_cub3d);
+static uint32_t		get_color(t_cub3d *s_cub3d);
 
 void	draw_texturized_line(int x, t_cub3d *s_cub3d)
 {
@@ -69,7 +69,7 @@ void	draw_box(mlx_image_t *image, int height, int width, int beginx,
 
 static u_int32_t	str_to_color(char *str)
 {
-	char	**rgb;
+	char		**rgb;
 	u_int32_t	color;
 
 	rgb = ft_split(str, ',');
@@ -81,8 +81,8 @@ static u_int32_t	str_to_color(char *str)
 
 void	draw_background(t_cub3d *s_cub3d)
 {
-	draw_box(s_cub3d->image, SCREEN_HEIGHT / 2, SCREEN_WIDTH,
-		0, 0, str_to_color(s_cub3d->rgb_colors.floor_color));
+	draw_box(s_cub3d->image, SCREEN_HEIGHT / 2, SCREEN_WIDTH, 0, 0,
+			str_to_color(s_cub3d->rgb_colors.floor_color));
 	draw_box(s_cub3d->image, SCREEN_HEIGHT / 2, SCREEN_WIDTH, 0, SCREEN_HEIGHT
-		/ 2, str_to_color(s_cub3d->rgb_colors.ceiling_color));
+			/ 2, str_to_color(s_cub3d->rgb_colors.ceiling_color));
 }
