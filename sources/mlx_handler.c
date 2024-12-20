@@ -20,12 +20,12 @@ int	handle_mlx(mlx_t **mlx, mlx_image_t **image)
 	*image = mlx_new_image(*mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (!(*image))
 	{
-		mlx_close_window(*mlx);
+		mlx_terminate(*mlx);
 		return (1);
 	}
 	if (mlx_image_to_window(*mlx, *image, 0, 0) == -1)
 	{
-		mlx_close_window(*mlx);
+		mlx_terminate(*mlx);
 		return (1);
 	}
 	return (0);

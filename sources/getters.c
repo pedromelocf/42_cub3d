@@ -28,6 +28,7 @@ mlx_texture_t	*get_texture(char *line)
 	texture = NULL;
 	if (is_valid_png(trimmed_line))
 		texture = mlx_load_png(trimmed_line);
+	free(trimmed_line);
 	return (texture);
 }
 
@@ -52,9 +53,9 @@ void	get_map(char *line, t_cub3d *scene, int fd)
 		ft_lstadd_back(&lines, ft_lstnew(line));
 		line = ft_get_next_line(fd);
 	}
-	// if (is_valid_map(lines))
-	fill_map(&scene->map, lines);
-	// ft_lstclear(&lines, free);
+	if (is_valid_map(lines))
+		fill_map(&scene->map, lines);
+//	ft_lstclear(&lines, free);
 }
 
 static void	fill_map(char ***map, t_list *list)

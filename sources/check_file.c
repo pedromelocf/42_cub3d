@@ -101,9 +101,6 @@ bool	is_valid_map(t_list *list)
 bool	is_empty_line(char *line)
 {
 	while (*line && ft_strchr(BLANK_CHARS, *line))
-	{
 		line++;
-		printf("%d ", *line);
-	}
 	return (!*line);
 }

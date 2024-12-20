@@ -127,19 +127,20 @@ void	clean_scene(t_cub3d *scene, char *message)
 	if (scene->rgb_colors.ceiling_color)
 		free(scene->rgb_colors.ceiling_color);
 	if (scene->map)
+	{
 		ft_for_each((void **)scene->map, free);
+		free(scene->map);
+	}
 	if (scene->mlx)
-		free(scene->mlx);
+		mlx_terminate(scene->mlx);
 	if (scene->textures.loaded_textures.no)
-		free(scene->textures.loaded_textures.no);
+		mlx_delete_texture(scene->textures.loaded_textures.no);
 	if (scene->textures.loaded_textures.so)
-		free(scene->textures.loaded_textures.so);
+		mlx_delete_texture(scene->textures.loaded_textures.so);
 	if (scene->textures.loaded_textures.we)
-		free(scene->textures.loaded_textures.we);
+		mlx_delete_texture(scene->textures.loaded_textures.we);
 	if (scene->textures.loaded_textures.ea)
-		free(scene->textures.loaded_textures.ea);
-	if (scene->textures.wall_texture)
-		free(scene->textures.wall_texture);
+		mlx_delete_texture(scene->textures.loaded_textures.ea);
 	if (message)
 		handle_error(message);
 	exit(EXIT_SUCCESS);
