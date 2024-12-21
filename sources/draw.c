@@ -6,7 +6,7 @@
 /*   By: pmelo-ca <pmelo-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:27:24 by pmelo-ca          #+#    #+#             */
-/*   Updated: 2024/12/20 12:26:12 by pmelo-ca         ###   ########.fr       */
+/*   Updated: 2024/12/20 19:57:36 by pmelo-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ static uint32_t	get_color(t_cub3d *s_cub3d)
 	return (pixel[0] << 24 | pixel[1] << 16 | pixel[2] << 8 | pixel[3]);
 }
 
-void	draw_box(mlx_image_t *image, int height, int width, int beginx,
-		int beginy, uint32_t color)
+void	draw_box(mlx_image_t *image, int beginx, int beginy, uint32_t color)
 {
 	int	temp;
 	int	x;
@@ -52,9 +51,9 @@ void	draw_box(mlx_image_t *image, int height, int width, int beginx,
 	temp = beginx;
 	x = 0;
 	y = 0;
-	while (y < height)
+	while (y < SCREEN_HEIGHT)
 	{
-		while (x < width)
+		while (x < SCREEN_WIDTH)
 		{
 			mlx_put_pixel(image, beginx, beginy, color);
 			beginx++;
@@ -73,7 +72,8 @@ static u_int32_t	str_to_color(char *str)
 	u_int32_t	color;
 
 	rgb = ft_split(str, ',');
-	color = ft_atoi(rgb[0]) << 24 | ft_atoi(rgb[1]) << 16 | ft_atoi(rgb[2]) << 8 | 255;
+	color = ft_atoi(rgb[0]) << 24 | ft_atoi(rgb[1]) << 16
+		| ft_atoi(rgb[2]) << 8 | 255;
 	ft_for_each((void **)rgb, free);
 	free(rgb);
 	return (color);
@@ -81,8 +81,8 @@ static u_int32_t	str_to_color(char *str)
 
 void	draw_background(t_cub3d *s_cub3d)
 {
-	draw_box(s_cub3d->image, SCREEN_HEIGHT / 2, SCREEN_WIDTH, 0, 0,
-			str_to_color(s_cub3d->rgb_colors.floor_color));
-	draw_box(s_cub3d->image, SCREEN_HEIGHT / 2, SCREEN_WIDTH, 0, SCREEN_HEIGHT
-			/ 2, str_to_color(s_cub3d->rgb_colors.ceiling_color));
+	draw_box(s_cub3d->image, 0, 0,
+		str_to_color(s_cub3d->rgb_colors.floor_color));
+	draw_box(s_cub3d->image, 0, SCREEN_HEIGHT / 2,
+		str_to_color(s_cub3d->rgb_colors.ceiling_color));
 }

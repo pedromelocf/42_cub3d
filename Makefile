@@ -31,6 +31,7 @@ MLX						:= $(addprefix $(MLX_BUILD), $(MLX_FILE))
 FILES					:=  algorithm \
 						 	cast_rays \
 						 	check_file \
+						 	check_identifiers \
 							dda \
 							draw \
 							getters \

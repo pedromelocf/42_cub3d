@@ -6,14 +6,13 @@
 /*   By: pmelo-ca <pmelo-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:12:37 by jovicto2          #+#    #+#             */
-/*   Updated: 2024/12/20 12:26:23 by pmelo-ca         ###   ########.fr       */
+/*   Updated: 2024/12/20 19:58:49 by pmelo-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
 static void	process_file(t_cub3d *scene);
-static void	check_identifiers(char *line, t_cub3d *scene, int fd);
 static bool	is_map_playable(char **map);
 
 void	load_scene(char *file, t_cub3d *scene)
@@ -28,6 +27,7 @@ static void	process_file(t_cub3d *scene)
 {
 	int		fd;
 	char	*line;
+	bool	not_map_line;
 
 	fd = open(scene->file, O_RDONLY);
 	if (fd < 0)
@@ -35,33 +35,14 @@ static void	process_file(t_cub3d *scene)
 	line = ft_get_next_line(fd);
 	while (line && *line)
 	{
-		check_identifiers(line, scene, fd);
-		free(line);
+		not_map_line = check_identifiers(line, scene, fd);
+		if (!not_map_line)
+			free(line);
 		line = ft_get_next_line(fd);
 	}
 	close(fd);
 	if (scene->map)
 		get_player_elements(scene);
-}
-
-static void	check_identifiers(char *line, t_cub3d *scene, int fd)
-{
-	if (is_empty_line(line))
-		return ;
-	if (ft_strnstr(line, "NO ", 3))
-		scene->textures.loaded_textures.no = get_texture(line);
-	else if (ft_strnstr(line, "SO ", 3))
-		scene->textures.loaded_textures.so = get_texture(line);
-	else if (ft_strnstr(line, "WE ", 3))
-		scene->textures.loaded_textures.we = get_texture(line);
-	else if (ft_strnstr(line, "EA ", 3))
-		scene->textures.loaded_textures.ea = get_texture(line);
-	else if (ft_strnstr(line, "F ", 2))
-		scene->rgb_colors.floor_color = get_rgb(line);
-	else if (ft_strnstr(line, "C ", 2))
-		scene->rgb_colors.ceiling_color = get_rgb(line);
-	else
-		get_map(line, scene, fd);
 }
 
 void	check_elements(t_cub3d *scene)
@@ -94,8 +75,8 @@ void	flood_fill(char **map, int x, t_coordinates c)
 
 static bool	is_map_playable(char **map)
 {
-	int i;
-	int map_size;
+	int	i;
+	int	map_size;
 
 	i = -1;
 	map_size = (int)ft_arr_len(map);

@@ -6,7 +6,7 @@
 /*   By: pmelo-ca <pmelo-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 22:54:02 by pmelo-ca          #+#    #+#             */
-/*   Updated: 2024/12/20 12:26:33 by pmelo-ca         ###   ########.fr       */
+/*   Updated: 2024/12/20 20:12:50 by pmelo-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@
 # define LEFT MLX_KEY_LEFT
 # define MOVE_SPEED_MULTI 4.0
 # define ROTATE_SPEED_MULTI 1.5
-# define COLISION_DISTANCE_MULTI 10.0
+# define COLISION_DISTANCE_MULTI 6.0
 
 enum					e_side
 {
@@ -149,6 +149,8 @@ char					*get_rgb(char *line);
 void					get_map(char *line, t_cub3d *scene, int fd);
 void					get_player_elements(t_cub3d *scene);
 void					check_elements(t_cub3d *scene);
+bool					check_identifiers(char *line, t_cub3d *scene, int fd);
+void					fill_player_coordinates(t_cub3d *scene, int x, int y);
 void					flood_fill(char **map, int rows, t_coordinates c);
 bool					is_valid_png(char *file);
 bool					is_valid_color_tag(char *line);
@@ -164,8 +166,8 @@ void					dda(t_cub3d *s_cub3d);
 void					load_texture_info(t_cub3d *s_cub3d);
 void					wall_calculations(t_cub3d *s_cub3d);
 void					draw_line(int x, t_cub3d *s_cub3d);
-void					draw_box(mlx_image_t *image, int height, int width,
-							int beginx, int beginy, uint32_t color);
+void					draw_box(mlx_image_t *image, int beginx, int beginy,
+							uint32_t color);
 void					draw_background(t_cub3d *s_cub3d);
 void					draw_texturized_line(int x, t_cub3d *s_cub3d);
 void					player_rotate(t_cub3d *s_cub3d, float multiply_factor);
