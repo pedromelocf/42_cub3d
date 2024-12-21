@@ -51,7 +51,7 @@ void	draw_box(mlx_image_t *image, int beginx, int beginy, uint32_t color)
 	temp = beginx;
 	x = 0;
 	y = 0;
-	while (y < SCREEN_HEIGHT)
+	while (y < SCREEN_HEIGHT / 2)
 	{
 		while (x < SCREEN_WIDTH)
 		{
